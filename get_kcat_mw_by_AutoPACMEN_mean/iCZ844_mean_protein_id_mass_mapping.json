@@ -1,0 +1,2354 @@
+{
+    "CEY17_RS15730": {
+        "accessions": "Q8NLB6",
+        "entry_name": "3HBH_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 49648,
+        "gene_name": "'OrderedLocusNames=Cgl3026, cg3354;'"
+    },
+    "CEY17_RS11440": {
+        "accessions": "P42449",
+        "entry_name": "ACEA_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 47228,
+        "gene_name": "'Name=aceA {ECO:0000303|PubMed:8206824}; OrderedLocusNames=Cgl2331, cg2560;'"
+    },
+    "CEY17_RS14055": {
+        "accessions": "P77845",
+        "entry_name": "ACKA_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 43092,
+        "gene_name": "'Name=ackA {ECO:0000255|HAMAP-Rule:MF_00020}; Synonyms=ack; OrderedLocusNames=Cgl2752, cg3047;'"
+    },
+    "CEY17_RS08285": {
+        "accessions": "Q8NQ98",
+        "entry_name": "ACNA_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 101726,
+        "gene_name": "'Name=acn; OrderedLocusNames=Cgl1540, cg1737;'"
+    },
+    "CEY17_RS12665": {
+        "accessions": "Q8NMS4",
+        "entry_name": "ACPS_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 14751,
+        "gene_name": "'Name=acpS {ECO:0000255|HAMAP-Rule:MF_00101}; Synonyms=ppt1; OrderedLocusNames=Cgl2491, cg2738;'"
+    },
+    "CEY17_RS10140": {
+        "accessions": "Q8NNW4",
+        "entry_name": "ACYP_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 10663,
+        "gene_name": "'Name=acyP; OrderedLocusNames=Cgl2066, cg2266;'"
+    },
+    "CEY17_RS01500": {
+        "accessions": "P26512",
+        "entry_name": "AK_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 44755,
+        "gene_name": "'Name=lysC; OrderedLocusNames=Cgl0251, cg0306;'"
+    },
+    "CEY17_RS14115": {
+        "accessions": "P19537",
+        "entry_name": "ALF_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 37214,
+        "gene_name": "'Name=fba; Synonyms=fda; OrderedLocusNames=Cgl2770, cg3068;'"
+    },
+    "CEY17_RS03280": {
+        "accessions": "Q8RSU9",
+        "entry_name": "ALR_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 39174,
+        "gene_name": "'Name=alr; OrderedLocusNames=Cgl0588, cg0681;'"
+    },
+    "CEY17_RS10820": {
+        "accessions": "Q8NNJ4",
+        "entry_name": "AMPA_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 52788,
+        "gene_name": "'Name=pepA {ECO:0000255|HAMAP-Rule:MF_00181}; Synonyms=pepB; OrderedLocusNames=Cgl2205, cg2419;'"
+    },
+    "CEY17_RS08470": {
+        "accessions": "P54146",
+        "entry_name": "AMT_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 47699,
+        "gene_name": "'Name=amt; OrderedLocusNames=Cgl1583, cg1785;'"
+    },
+    "CEY17_RS08825": {
+        "accessions": "O87330",
+        "entry_name": "APT_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 19563,
+        "gene_name": "'Name=apt {ECO:0000255|HAMAP-Rule:MF_00004}; OrderedLocusNames=Cgl1654, cg1862;'"
+    },
+    "CEY17_RS07505": {
+        "accessions": "Q59281",
+        "entry_name": "ARGB_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 31090,
+        "gene_name": "'Name=argB {ECO:0000255|HAMAP-Rule:MF_00082}; OrderedLocusNames=Cgl1396, cg1582;'"
+    },
+    "CEY17_RS07495": {
+        "accessions": "Q59279",
+        "entry_name": "ARGC_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 35888,
+        "gene_name": "'Name=argC {ECO:0000255|HAMAP-Rule:MF_00150}; OrderedLocusNames=Cgl1394, cg1580;'"
+    },
+    "CEY17_RS07510": {
+        "accessions": "Q59282",
+        "entry_name": "ARGD_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 41206,
+        "gene_name": "'Name=argD {ECO:0000255|HAMAP-Rule:MF_01107}; OrderedLocusNames=Cgl1397, cg1583;'"
+    },
+    "CEY17_RS07500": {
+        "accessions": "Q59280",
+        "entry_name": "ARGJ_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 39714,
+        "gene_name": "'Name=argJ {ECO:0000255|HAMAP-Rule:MF_01106}; OrderedLocusNames=Cgl1395, cg1581;'"
+    },
+    "CEY17_RS07530": {
+        "accessions": "O88101",
+        "entry_name": "ARLY_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 51042,
+        "gene_name": "'Name=argH {ECO:0000255|HAMAP-Rule:MF_00006}; OrderedLocusNames=Cgl1401, cg1588;'"
+    },
+    "CEY17_RS04105": {
+        "accessions": "Q9Z470",
+        "entry_name": "AROA_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 45528,
+        "gene_name": "'Name=aroA {ECO:0000255|HAMAP-Rule:MF_00210}; OrderedLocusNames=Cgl0764, cg0873;'"
+    },
+    "CEY17_RS08665": {
+        "accessions": "Q9X5D2",
+        "entry_name": "AROB_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 38858,
+        "gene_name": "'Name=aroB {ECO:0000255|HAMAP-Rule:MF_00110}; OrderedLocusNames=Cgl1621, cg1827;'"
+    },
+    "CEY17_RS08675": {
+        "accessions": "Q9X5D0",
+        "entry_name": "AROC_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 43733,
+        "gene_name": "'Name=aroC {ECO:0000255|HAMAP-Rule:MF_00300}; OrderedLocusNames=Cgl1623, cg1829;'"
+    },
+    "CEY17_RS02400": {
+        "accessions": "Q9X5C9",
+        "entry_name": "AROE_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 29697,
+        "gene_name": "'Name=aroE {ECO:0000255|HAMAP-Rule:MF_00222}; Synonyms=qsuD {ECO:0000303|PubMed:23929881};'"
+    },
+    "CEY17_RS05570": {
+        "accessions": "P35170",
+        "entry_name": "AROG_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 39131,
+        "gene_name": "'Name=aroG; Synonyms=aroF; OrderedLocusNames=Cgl0990, cg1129;'"
+    },
+    "CEY17_RS08670": {
+        "accessions": "Q9X5D1",
+        "entry_name": "AROK_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 18382,
+        "gene_name": "'Name=aroK {ECO:0000255|HAMAP-Rule:MF_00109}; OrderedLocusNames=Cgl1622, cg1828;'"
+    },
+    "CEY17_RS06070": {
+        "accessions": "Q46065",
+        "entry_name": "AROP_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 49268,
+        "gene_name": "'Name=aroP; OrderedLocusNames=Cgl1107, cg1257;'"
+    },
+    "CEY17_RS02395": {
+        "accessions": "O52377",
+        "entry_name": "AROQ_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 15448,
+        "gene_name": "'Name=aroQ; Synonyms=aroD; OrderedLocusNames=Cgl0423, cg0503;'"
+    },
+    "CEY17_RS08135": {
+        "accessions": "P0DKS5",
+        "entry_name": "ARSC1_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 15117,
+        "gene_name": "'Name=arsC1; OrderedLocusNames=cg1706, Cgl1511;'"
+    },
+    "CEY17_RS01560": {
+        "accessions": "P0DKS7",
+        "entry_name": "ARSC2_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 13763,
+        "gene_name": "'Name=arsC2; Synonyms=arsX; OrderedLocusNames=cg0319, Cgl0263;'"
+    },
+    "CEY17_RS08090": {
+        "accessions": "Q59200",
+        "entry_name": "ASPA_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 57569,
+        "gene_name": "'Name=aspA; OrderedLocusNames=Cgl1503, cg1697;'"
+    },
+    "CEY17_RS07525": {
+        "accessions": "O85176",
+        "entry_name": "ASSY_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 44135,
+        "gene_name": "'Name=argG {ECO:0000255|HAMAP-Rule:MF_00005}; OrderedLocusNames=Cgl1400, cg1586;'"
+    },
+    "CEY17_RS06590": {
+        "accessions": "Q79VG7",
+        "entry_name": "ATPA_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 58751,
+        "gene_name": "'Name=atpA {ECO:0000255|HAMAP-Rule:MF_01346}; OrderedLocusNames=Cgl1210, cg1366;'"
+    },
+    "CEY17_RS06600": {
+        "accessions": "P42464",
+        "entry_name": "ATPB_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 52538,
+        "gene_name": "'Name=atpD {ECO:0000255|HAMAP-Rule:MF_01347}; OrderedLocusNames=Cgl1212, cg1368;'"
+    },
+    "CEY17_RS06585": {
+        "accessions": "Q7DIC8",
+        "entry_name": "ATPD_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 28883,
+        "gene_name": "'Name=atpH {ECO:0000255|HAMAP-Rule:MF_01416}; OrderedLocusNames=Cgl1209, cg1365;'"
+    },
+    "CEY17_RS06605": {
+        "accessions": "Q9ETA7",
+        "entry_name": "ATPE_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 13084,
+        "gene_name": "'Name=atpC {ECO:0000255|HAMAP-Rule:MF_00530}; OrderedLocusNames=Cgl1213, cg1369;'"
+    },
+    "CEY17_RS06580": {
+        "accessions": "Q79VG9",
+        "entry_name": "ATPF_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 21095,
+        "gene_name": "'Name=atpF {ECO:0000255|HAMAP-Rule:MF_01398}; OrderedLocusNames=Cgl1208, cg1364;'"
+    },
+    "CEY17_RS06595": {
+        "accessions": "Q79VG6",
+        "entry_name": "ATPG_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 35740,
+        "gene_name": "'Name=atpG {ECO:0000255|HAMAP-Rule:MF_00815}; OrderedLocusNames=Cgl1211, cg1367;'"
+    },
+    "CEY17_RS04840": {
+        "accessions": "P54582",
+        "entry_name": "BETP_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 64209,
+        "gene_name": "'Name=betP {ECO:0000303|PubMed:8752342}; OrderedLocusNames=Cgl0892, cg1016;'"
+    },
+    "CEY17_RS13305": {
+        "accessions": "P46395",
+        "entry_name": "BIOA_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 45741,
+        "gene_name": "'Name=bioA {ECO:0000255|HAMAP-Rule:MF_00834}; OrderedLocusNames=Cgl2604, cg2885;'"
+    },
+    "CEY17_RS00490": {
+        "accessions": "P46396",
+        "entry_name": "BIOB_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 36856,
+        "gene_name": "'Name=bioB {ECO:0000255|HAMAP-Rule:MF_01694}; OrderedLocusNames=Cgl0072, cg0095;'"
+    },
+    "CEY17_RS13310": {
+        "accessions": "P46397",
+        "entry_name": "BIOD_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 23855,
+        "gene_name": "'Name=bioD {ECO:0000255|HAMAP-Rule:MF_00336}; OrderedLocusNames=Cgl2605, cg2886;'"
+    },
+    "CEY17_RS11340": {
+        "accessions": "O06754",
+        "entry_name": "BRNQ_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 44832,
+        "gene_name": "'Name=brnQ; OrderedLocusNames=Cgl2310, cg2537;'"
+    },
+    "CEY17_RS08480": {
+        "accessions": "P12880",
+        "entry_name": "CAPP_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 103198,
+        "gene_name": "'Name=ppc; OrderedLocusNames=Cgl1585, cg1787;'"
+    },
+    "CEY17_RS08605": {
+        "accessions": "P58893",
+        "entry_name": "CARA_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 42134,
+        "gene_name": "'Name=carA {ECO:0000255|HAMAP-Rule:MF_01209}; OrderedLocusNames=Cgl1610, cg1814;'"
+    },
+    "CEY17_RS08600": {
+        "accessions": "P58939",
+        "entry_name": "CARB_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 120037,
+        "gene_name": "'Name=carB {ECO:0000255|HAMAP-Rule:MF_01210}; OrderedLocusNames=Cgl1609, cg1813;'"
+    },
+    "CEY17_RS04520": {
+        "accessions": "P42457",
+        "entry_name": "CISY_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 48929,
+        "gene_name": "'Name=gltA; OrderedLocusNames=Cgl0829, cg0949;'"
+    },
+    "CEY17_RS05585": {
+        "accessions": "Q8NRQ2",
+        "entry_name": "COAA_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 35316,
+        "gene_name": "'Name=coaA {ECO:0000255|HAMAP-Rule:MF_00215}; OrderedLocusNames=Cgl0995, cg1132;'"
+    },
+    "CEY17_RS07165": {
+        "accessions": "Q8NQU5",
+        "entry_name": "COAD_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 17575,
+        "gene_name": "'Name=coaD {ECO:0000255|HAMAP-Rule:MF_00151}; OrderedLocusNames=Cgl1329, cg1501;'"
+    },
+    "CEY17_RS07325": {
+        "accessions": "P58897",
+        "entry_name": "COAE_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 21663,
+        "gene_name": "'Name=coaE; OrderedLocusNames=Cgl1361, cg1538;'"
+    },
+    "CEY17_RS10805": {
+        "accessions": "Q8NNJ7",
+        "entry_name": "COBS_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 32436,
+        "gene_name": "'Name=cobS {ECO:0000255|HAMAP-Rule:MF_00719}; OrderedLocusNames=Cgl2201, cg2415;'"
+    },
+    "CEY17_RS10800": {
+        "accessions": "Q8NNJ8",
+        "entry_name": "COBT_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 37444,
+        "gene_name": "'Name=cobT {ECO:0000255|HAMAP-Rule:MF_00230}; OrderedLocusNames=Cgl2200, cg2414;'"
+    },
+    "CEY17_RS12850": {
+        "accessions": "Q79VD7",
+        "entry_name": "COX1_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 65102,
+        "gene_name": "'Name=ctaD; OrderedLocusNames=Cgl2523, cg2780;'"
+    },
+    "CEY17_RS10775": {
+        "accessions": "Q8NNK2",
+        "entry_name": "COX2_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 39632,
+        "gene_name": "'Name=ctaC; OrderedLocusNames=Cgl2195, cg2409;'"
+    },
+    "CEY17_RS10760": {
+        "accessions": "Q9AEL8",
+        "entry_name": "COX3_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 22442,
+        "gene_name": "'Name=ctaE; OrderedLocusNames=Cgl2192, cg2406;'"
+    },
+    "CEY17_RS10770": {
+        "accessions": "Q8NNK3",
+        "entry_name": "COX4_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 15545,
+        "gene_name": "'Name=ctaF; OrderedLocusNames=Cgl2194, cg2408;'"
+    },
+    "CEY17_RS08430": {
+        "accessions": "Q8NQ66",
+        "entry_name": "COXX_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 36125,
+        "gene_name": "'Name=ctaB {ECO:0000255|HAMAP-Rule:MF_00154}; OrderedLocusNames=Cgl1573, cg1773;'"
+    },
+    "CEY17_RS09360": {
+        "accessions": "P19808",
+        "entry_name": "DAPA_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 31262,
+        "gene_name": "'Name=dapA {ECO:0000255|HAMAP-Rule:MF_00418}; OrderedLocusNames=Cgl1971, cg2161;'"
+    },
+    "CEY17_RS09370": {
+        "accessions": "P40110",
+        "entry_name": "DAPB_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 26024,
+        "gene_name": "'Name=dapB {ECO:0000255|HAMAP-Rule:MF_00102}; OrderedLocusNames=Cgl1973, cg2163;'"
+    },
+    "CEY17_RS13390": {
+        "accessions": "P04964",
+        "entry_name": "DAPDH_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 35199,
+        "gene_name": "'Name=ddh; OrderedLocusNames=Cgl2617, cg2900;'"
+    },
+    "CEY17_RS06065": {
+        "accessions": "Q8NRE3",
+        "entry_name": "DAPD_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 31170,
+        "gene_name": "'Name=dapD {ECO:0000255|HAMAP-Rule:MF_02122}; OrderedLocusNames=Cgl1106, cg1256;'"
+    },
+    "CEY17_RS06080": {
+        "accessions": "Q59284",
+        "entry_name": "DAPE_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 39974,
+        "gene_name": "'Name=dapE; OrderedLocusNames=Cgl1109, cg1260;'"
+    },
+    "CEY17_RS09215": {
+        "accessions": "Q8NP73",
+        "entry_name": "DAPF_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 29203,
+        "gene_name": "'Name=dapF {ECO:0000303|PubMed:12948639}; OrderedLocusNames=Cgl1943, cg2129;'"
+    },
+    "CEY17_RS06440": {
+        "accessions": "P09890",
+        "entry_name": "DCDA_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 47411,
+        "gene_name": "'Name=lysA {ECO:0000255|HAMAP-Rule:MF_02120}; OrderedLocusNames=Cgl1180, cg1334;'"
+    },
+    "CEY17_RS14535": {
+        "accessions": "Q8NLT9",
+        "entry_name": "DCD_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 20689,
+        "gene_name": "'Name=dcd {ECO:0000255|HAMAP-Rule:MF_00146}; OrderedLocusNames=Cgl2848, cg3155;'"
+    },
+    "CEY17_RS02460": {
+        "accessions": "Q8NT75",
+        "entry_name": "DCUP_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 38413,
+        "gene_name": "'Name=hemE {ECO:0000255|HAMAP-Rule:MF_00218}; OrderedLocusNames=Cgl0435, cg0516;'"
+    },
+    "CEY17_RS07125": {
+        "accessions": "Q8NQV2",
+        "entry_name": "DDL_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 38560,
+        "gene_name": "'Name=ddl {ECO:0000255|HAMAP-Rule:MF_00047}; Synonyms=ddlA; OrderedLocusNames=Cgl1321, cg1493;'"
+    },
+    "CEY17_RS08560": {
+        "accessions": "Q8NQ46",
+        "entry_name": "DEF1_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 18543,
+        "gene_name": "'Name=def1 {ECO:0000255|HAMAP-Rule:MF_00163}; OrderedLocusNames=Cgl1601, cg1804;'"
+    },
+    "CEY17_RS13980": {
+        "accessions": "Q8NM41",
+        "entry_name": "DEF2_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 21139,
+        "gene_name": "'Name=def2 {ECO:0000255|HAMAP-Rule:MF_00163}; OrderedLocusNames=Cgl2738, cg3034;'"
+    },
+    "CEY17_RS02200": {
+        "accessions": "Q8NTC4",
+        "entry_name": "DEOC_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 22520,
+        "gene_name": "'Name=deoC {ECO:0000255|HAMAP-Rule:MF_00114}; OrderedLocusNames=Cgl0383, cg0458;'"
+    },
+    "CEY17_RS11155": {
+        "accessions": "Q8NND1",
+        "entry_name": "DGTL1_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 46151,
+        "gene_name": "'Name=dgt; OrderedLocusNames=Cgl2273, cg2494;'"
+    },
+    "CEY17_RS01505": {
+        "accessions": "P0C1D8",
+        "entry_name": "DHAS_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 36212,
+        "gene_name": "'Name=asd {ECO:0000255|HAMAP-Rule:MF_02121}; OrderedLocusNames=Cgl0252, cg0307;'"
+    },
+    "CEY17_RS10200": {
+        "accessions": "P31026",
+        "entry_name": "DHE4_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 48988,
+        "gene_name": "'Name=gdh; OrderedLocusNames=Cgl2079, cg2280;'"
+    },
+    "CEY17_RS06455": {
+        "accessions": "P08499",
+        "entry_name": "DHOM_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 46438,
+        "gene_name": "'Name=hom; Synonyms=thrA; OrderedLocusNames=Cgl1183, cg1337;'"
+    },
+    "CEY17_RS04880": {
+        "accessions": "Q8NRY8",
+        "entry_name": "DLD_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 63723,
+        "gene_name": "'Name=dld {ECO:0000255|HAMAP-Rule:MF_02092, ECO:0000303|PubMed:21159175}; OrderedLocusNames=Cgl0901 {ECO:0000312|EMBL:BAB98294.1};'"
+    },
+    "CEY17_RS00005": {
+        "accessions": "Q8NUD8",
+        "entry_name": "DNAA_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 58508,
+        "gene_name": "'Name=dnaA {ECO:0000255|HAMAP-Rule:MF_00377}; OrderedLocusNames=Cgl0001, cg0001;'"
+    },
+    "CEY17_RS09025": {
+        "accessions": "Q8NPA9",
+        "entry_name": "DUT_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 15863,
+        "gene_name": "'Name=dut {ECO:0000255|HAMAP-Rule:MF_00116}; OrderedLocusNames=Cgl1905, cg2086;'"
+    },
+    "CEY17_RS09570": {
+        "accessions": "Q8NP10",
+        "entry_name": "DXR_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 40958,
+        "gene_name": "'Name=dxr {ECO:0000255|HAMAP-Rule:MF_00183}; OrderedLocusNames=Cgl2016, cg2208;'"
+    },
+    "CEY17_RS09010": {
+        "accessions": "Q8NPB2",
+        "entry_name": "DXS_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 67880,
+        "gene_name": "'Name=dxs {ECO:0000255|HAMAP-Rule:MF_00315}; OrderedLocusNames=Cgl1902, cg2083;'"
+    },
+    "CEY17_RS11350": {
+        "accessions": "Q79VE0",
+        "entry_name": "ECTP_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 67403,
+        "gene_name": "'Name=ectP {ECO:0000303|PubMed:9811661}; OrderedLocusNames=Cgl2312 {ECO:0000312|EMBL:BAB99705.1};'"
+    },
+    "CEY17_RS08555": {
+        "accessions": "Q8NQ47",
+        "entry_name": "FMT_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 33590,
+        "gene_name": "'Name=fmt {ECO:0000255|HAMAP-Rule:MF_00182}; OrderedLocusNames=Cgl1600, cg1803;'"
+    },
+    "CEY17_RS03570": {
+        "accessions": "Q8NSM0",
+        "entry_name": "FOLD_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 30150,
+        "gene_name": "'Name=folD {ECO:0000255|HAMAP-Rule:MF_01576}; OrderedLocusNames=Cgl0648, cg0750;'"
+    },
+    "CEY17_RS05650": {
+        "accessions": "Q8NRN8",
+        "entry_name": "FUMC_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 50244,
+        "gene_name": "'Name=fumC {ECO:0000255|HAMAP-Rule:MF_00743}; Synonyms=fum; OrderedLocusNames=Cgl1010, cg1145;'"
+    },
+    "CEY17_RS08495": {
+        "accessions": "Q01651",
+        "entry_name": "G3P_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 36046,
+        "gene_name": "'Name=gap; OrderedLocusNames=Cgl1588, cg1791;'"
+    },
+    "CEY17_RS04635": {
+        "accessions": "Q8NS31",
+        "entry_name": "G6PI_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 59166,
+        "gene_name": "'Name=pgi {ECO:0000255|HAMAP-Rule:MF_00473}; OrderedLocusNames=Cgl0851, cg0973;'"
+    },
+    "CEY17_RS09105": {
+        "accessions": "Q45291",
+        "entry_name": "GALE_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 35263,
+        "gene_name": "'Name=galE; OrderedLocusNames=Cgl1921, cg2104;'"
+    },
+    "CEY17_RS06775": {
+        "accessions": "Q8NR17",
+        "entry_name": "GATA_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 52536,
+        "gene_name": "'Name=gatA {ECO:0000255|HAMAP-Rule:MF_00120}; OrderedLocusNames=Cgl1247, cg1404;'"
+    },
+    "CEY17_RS06825": {
+        "accessions": "Q8NR05",
+        "entry_name": "GATB_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 53552,
+        "gene_name": "'Name=gatB {ECO:0000255|HAMAP-Rule:MF_00121}; OrderedLocusNames=Cgl1259, cg1420;'"
+    },
+    "CEY17_RS06770": {
+        "accessions": "Q8NR18",
+        "entry_name": "GATC_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 10636,
+        "gene_name": "'Name=gatC {ECO:0000255|HAMAP-Rule:MF_00122}; OrderedLocusNames=Cgl1246, cg1403;'"
+    },
+    "CEY17_RS13765": {
+        "accessions": "Q8NM84",
+        "entry_name": "GCH1_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 21472,
+        "gene_name": "'Name=folE {ECO:0000255|HAMAP-Rule:MF_00223}; OrderedLocusNames=Cgl2695, cg2983;'"
+    },
+    "CEY17_RS13965": {
+        "accessions": "Q8NM44",
+        "entry_name": "GCS2_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 42439,
+        "gene_name": "'OrderedLocusNames=Cgl2736, cg3031;'"
+    },
+    "CEY17_RS15725": {
+        "accessions": "Q8NLB7",
+        "entry_name": "GENK_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 46806,
+        "gene_name": "'Name=genK; OrderedLocusNames=Cgl3025, cg3353;'"
+    },
+    "CEY17_RS06125": {
+        "accessions": "Q8NRD4",
+        "entry_name": "GLGC_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 43861,
+        "gene_name": "'Name=glgC {ECO:0000255|HAMAP-Rule:MF_00624}; OrderedLocusNames=Cgl1118, cg1269;'"
+    },
+    "CEY17_RS03255": {
+        "accessions": "Q8NST4",
+        "entry_name": "GLMM_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 46354,
+        "gene_name": "'Name=glmM {ECO:0000255|HAMAP-Rule:MF_01554}; OrderedLocusNames=Cgl0583, cg0675;'"
+    },
+    "CEY17_RS11145": {
+        "accessions": "Q8NND3",
+        "entry_name": "GLMS_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 67215,
+        "gene_name": "'Name=glmS {ECO:0000255|HAMAP-Rule:MF_00164}; OrderedLocusNames=Cgl2271, cg2492;'"
+    },
+    "CEY17_RS05090": {
+        "accessions": "Q8NRU8",
+        "entry_name": "GLMU_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 50457,
+        "gene_name": "'Name=glmU {ECO:0000255|HAMAP-Rule:MF_01631}; OrderedLocusNames=Cgl0943, cg1076;'"
+    },
+    "CEY17_RS10100": {
+        "accessions": "Q9X706",
+        "entry_name": "GLND_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 75970,
+        "gene_name": "'Name=glnD; OrderedLocusNames=Cgl2059, cg2258;'"
+    },
+    "CEY17_RS14735": {
+        "accessions": "Q8NLP9",
+        "entry_name": "GLPK_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 56145,
+        "gene_name": "'Name=glpK {ECO:0000255|HAMAP-Rule:MF_00186}; OrderedLocusNames=Cgl2890, cg3198;'"
+    },
+    "CEY17_RS05695": {
+        "accessions": "Q6M6E7",
+        "entry_name": "GLPX_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 35369,
+        "gene_name": "'Name=glpX; Synonyms=fbp; OrderedLocusNames=Cgl1019, cg1157;'"
+    },
+    "CEY17_RS12610": {
+        "accessions": "Q8NMT3",
+        "entry_name": "GLSA_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 44748,
+        "gene_name": "'Name=glsA; OrderedLocusNames=Cgl2482, cg2728;'"
+    },
+    "CEY17_RS09260": {
+        "accessions": "P48243",
+        "entry_name": "GLUA_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 26538,
+        "gene_name": "'Name=gluA; OrderedLocusNames=Cgl1950, cg2136;'"
+    },
+    "CEY17_RS09265": {
+        "accessions": "P48242",
+        "entry_name": "GLUB_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 31668,
+        "gene_name": "'Name=gluB; OrderedLocusNames=Cgl1951, cg2137;'"
+    },
+    "CEY17_RS09270": {
+        "accessions": "P48244",
+        "entry_name": "GLUC_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 24469,
+        "gene_name": "'Name=gluC; OrderedLocusNames=Cgl1952, cg2138;'"
+    },
+    "CEY17_RS09275": {
+        "accessions": "P48245",
+        "entry_name": "GLUD_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 29866,
+        "gene_name": "'Name=gluD; OrderedLocusNames=Cgl1953, cg2139;'"
+    },
+    "CEY17_RS05590": {
+        "accessions": "Q93PM7",
+        "entry_name": "GLYA_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 46541,
+        "gene_name": "'Name=glyA {ECO:0000255|HAMAP-Rule:MF_00051}; OrderedLocusNames=Cgl0996, cg1133;'"
+    },
+    "CEY17_RS07120": {
+        "accessions": "Q8NQV3",
+        "entry_name": "GPDA_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 34682,
+        "gene_name": "'Name=gpsA {ECO:0000255|HAMAP-Rule:MF_00394}; OrderedLocusNames=Cgl1320, cg1492;'"
+    },
+    "CEY17_RS03375": {
+        "accessions": "Q8NSR1",
+        "entry_name": "GUAA_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 55986,
+        "gene_name": "'Name=guaA {ECO:0000255|HAMAP-Rule:MF_00344}; OrderedLocusNames=Cgl0607, cg0703;'"
+    },
+    "CEY17_RS02365": {
+        "accessions": "P0C543",
+        "entry_name": "HEM1_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 49216,
+        "gene_name": "'Name=hemA {ECO:0000255|HAMAP-Rule:MF_00087}; OrderedLocusNames=Cgl0417, cg0497;'"
+    },
+    "CEY17_RS02370": {
+        "accessions": "Q8NT90",
+        "entry_name": "HEM3_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 32009,
+        "gene_name": "'Name=hemC {ECO:0000255|HAMAP-Rule:MF_00260}; OrderedLocusNames=Cgl0418, cg0498;'"
+    },
+    "CEY17_RS08270": {
+        "accessions": "Q8NQA1",
+        "entry_name": "HEMH_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 40579,
+        "gene_name": "'Name=hemH {ECO:0000255|HAMAP-Rule:MF_00323}; OrderedLocusNames=Cgl1537, cg1734;'"
+    },
+    "CEY17_RS08095": {
+        "accessions": "Q9Z472",
+        "entry_name": "HIS1_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 30229,
+        "gene_name": "'Name=hisG; OrderedLocusNames=Cgl1504, cg1698;'"
+    },
+    "CEY17_RS08100": {
+        "accessions": "Q9Z471",
+        "entry_name": "HIS2_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 9822,
+        "gene_name": "'Name=hisE; OrderedLocusNames=Cgl1505, cg1699;'"
+    },
+    "CEY17_RS10265": {
+        "accessions": "Q8NNT9",
+        "entry_name": "HIS3_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 13041,
+        "gene_name": "'Name=hisI {ECO:0000255|HAMAP-Rule:MF_01021}; OrderedLocusNames=Cgl2093, cg2296;'"
+    },
+    "CEY17_RS10280": {
+        "accessions": "O68602",
+        "entry_name": "HIS4_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 26609,
+        "gene_name": "'Name=hisA; OrderedLocusNames=Cgl2096, cg2299;'"
+    },
+    "CEY17_RS10285": {
+        "accessions": "O69043",
+        "entry_name": "HIS5_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 23173,
+        "gene_name": "'Name=hisH; OrderedLocusNames=Cgl2097, cg2300;'"
+    },
+    "CEY17_RS10270": {
+        "accessions": "O31139",
+        "entry_name": "HIS6_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 27245,
+        "gene_name": "'Name=hisF; OrderedLocusNames=Cgl2094, cg2297;'"
+    },
+    "CEY17_RS10315": {
+        "accessions": "Q9KJU3",
+        "entry_name": "HIS7_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 21914,
+        "gene_name": "'Name=hisB {ECO:0000255|HAMAP-Rule:MF_00076}; OrderedLocusNames=Cgl2100, cg2303;'"
+    },
+    "CEY17_RS10320": {
+        "accessions": "Q9KJU4",
+        "entry_name": "HIS8_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 39918,
+        "gene_name": "'Name=hisC {ECO:0000255|HAMAP-Rule:MF_01023}; OrderedLocusNames=Cgl2101, cg2304;'"
+    },
+    "CEY17_RS04290": {
+        "accessions": "Q8NS80",
+        "entry_name": "HISN_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 27893,
+        "gene_name": "'Name=hisN; OrderedLocusNames=Cgl0799, cg0910;'"
+    },
+    "CEY17_RS10325": {
+        "accessions": "Q8NNT5",
+        "entry_name": "HISX_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 46771,
+        "gene_name": "'Name=hisD {ECO:0000255|HAMAP-Rule:MF_01024}; OrderedLocusNames=Cgl2102, cg2305;'"
+    },
+    "CEY17_RS03645": {
+        "accessions": "P50216",
+        "entry_name": "IDH_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 80081,
+        "gene_name": "'Name=icd; OrderedLocusNames=Cgl0664, cg0766;'"
+    },
+    "CEY17_RS11315": {
+        "accessions": "Q8NN99",
+        "entry_name": "IDI_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 21121,
+        "gene_name": "'Name=idi {ECO:0000255|HAMAP-Rule:MF_00202}; OrderedLocusNames=Cgl2305, cg2531;'"
+    },
+    "CEY17_RS10440": {
+        "accessions": "Q04513",
+        "entry_name": "ILVA_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 46572,
+        "gene_name": "'Name=ilvA; OrderedLocusNames=Cgl2127, cg2334;'"
+    },
+    "CEY17_RS06885": {
+        "accessions": "P42463",
+        "entry_name": "ILVB_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 66846,
+        "gene_name": "'Name=ilvB; OrderedLocusNames=Cgl1271, cg1435;'"
+    },
+    "CEY17_RS06895": {
+        "accessions": "Q57179",
+        "entry_name": "ILVC_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 36159,
+        "gene_name": "'Name=ilvC {ECO:0000255|HAMAP-Rule:MF_00435}; OrderedLocusNames=Cgl1273, cg1437;'"
+    },
+    "CEY17_RS06870": {
+        "accessions": "Q8NQZ9",
+        "entry_name": "ILVD_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 64674,
+        "gene_name": "'Name=ilvD {ECO:0000255|HAMAP-Rule:MF_00012}; OrderedLocusNames=Cgl1268, cg1432;'"
+    },
+    "CEY17_RS00980": {
+        "accessions": "Q8NTY7",
+        "entry_name": "IOLG_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 36431,
+        "gene_name": "'Name=iolG {ECO:0000255|HAMAP-Rule:MF_01671}; OrderedLocusNames=Cgl0164, cg0204;'"
+    },
+    "CEY17_RS13790": {
+        "accessions": "Q8NM79",
+        "entry_name": "IPYR_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 17905,
+        "gene_name": "'Name=ppa {ECO:0000255|HAMAP-Rule:MF_00209}; OrderedLocusNames=Cgl2700, cg2988;'"
+    },
+    "CEY17_RS13580": {
+        "accessions": "Q8NMB8",
+        "entry_name": "ISPD_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 27525,
+        "gene_name": "'Name=ispD {ECO:0000255|HAMAP-Rule:MF_00108}; OrderedLocusNames=Cgl2660, cg2945;'"
+    },
+    "CEY17_RS04925": {
+        "accessions": "Q8NRY0",
+        "entry_name": "ISPE_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 32630,
+        "gene_name": "'Name=ispE {ECO:0000255|HAMAP-Rule:MF_00061}; OrderedLocusNames=Cgl0911, cg1039;'"
+    },
+    "CEY17_RS13575": {
+        "accessions": "Q8NMB9",
+        "entry_name": "ISPF_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 16582,
+        "gene_name": "'Name=ispF {ECO:0000255|HAMAP-Rule:MF_00107}; OrderedLocusNames=Cgl2659, cg2944;'"
+    },
+    "CEY17_RS05725": {
+        "accessions": "Q8NRM2",
+        "entry_name": "ISPH_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 35602,
+        "gene_name": "'Name=ispH {ECO:0000255|HAMAP-Rule:MF_00191}; Synonyms=lytB; OrderedLocusNames=Cgl1026, cg1164;'"
+    },
+    "CEY17_RS05575": {
+        "accessions": "P38118",
+        "entry_name": "ISPT1_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 25423,
+        "gene_name": "'Name=uppS1 {ECO:0000255|HAMAP-Rule:MF_01139}; OrderedLocusNames=Cgl0991, cg1130;'"
+    },
+    "CEY17_RS11205": {
+        "accessions": "Q8NNC1",
+        "entry_name": "ISPT2_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 28226,
+        "gene_name": "'Name=uppS2 {ECO:0000255|HAMAP-Rule:MF_01139}; OrderedLocusNames=Cgl2283, cg2508;'"
+    },
+    "CEY17_RS12765": {
+        "accessions": "Q8NMR5",
+        "entry_name": "IXTPA_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 22098,
+        "gene_name": "'OrderedLocusNames=Cgl2500, cg2751;'"
+    },
+    "CEY17_RS03100": {
+        "accessions": "P49973",
+        "entry_name": "KAD_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 19427,
+        "gene_name": "'Name=adk {ECO:0000255|HAMAP-Rule:MF_00235}; OrderedLocusNames=Cgl0556, cg0648;'"
+    },
+    "CEY17_RS07675": {
+        "accessions": "Q8NQK7",
+        "entry_name": "KCY_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 24139,
+        "gene_name": "'Name=cmk {ECO:0000255|HAMAP-Rule:MF_00238}; OrderedLocusNames=Cgl1427, cg1616;'"
+    },
+    "CEY17_RS02550": {
+        "accessions": "Q8NT57",
+        "entry_name": "KDGD_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 33552,
+        "gene_name": "'OrderedLocusNames=Cgl0453, cg0536;'"
+    },
+    "CEY17_RS08585": {
+        "accessions": "Q8NQ42",
+        "entry_name": "KGUA_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 20657,
+        "gene_name": "'Name=gmk {ECO:0000255|HAMAP-Rule:MF_00328}; Synonyms=drp113; OrderedLocusNames=Cgl1606, cg1810;'"
+    },
+    "CEY17_RS06460": {
+        "accessions": "P07128",
+        "entry_name": "KHSE_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 32620,
+        "gene_name": "'Name=thrB; OrderedLocusNames=Cgl1184, cg1338;'"
+    },
+    "CEY17_RS05085": {
+        "accessions": "Q8NRU9",
+        "entry_name": "KPRS_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 35551,
+        "gene_name": "'Name=prs {ECO:0000255|HAMAP-Rule:MF_00583}; Synonyms=prsA; OrderedLocusNames=Cgl0942, cg1075;'"
+    },
+    "CEY17_RS10245": {
+        "accessions": "Q46078",
+        "entry_name": "KPYK_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 51471,
+        "gene_name": "'Name=pyk; OrderedLocusNames=Cgl2089, cg2291;'"
+    },
+    "CEY17_RS03895": {
+        "accessions": "Q8NSG3",
+        "entry_name": "KUP_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 68626,
+        "gene_name": "'Name=kup {ECO:0000255|HAMAP-Rule:MF_01522}; OrderedLocusNames=Cgl0712, cg0817;'"
+    },
+    "CEY17_RS11455": {
+        "accessions": "Q8NN75",
+        "entry_name": "LCOP_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 68320,
+        "gene_name": "'Name=lcoP {ECO:0000303|PubMed:15327991}; OrderedLocusNames=Cgl2334 {ECO:0000312|EMBL:BAB99727.1};'"
+    },
+    "CEY17_RS14835": {
+        "accessions": "Q8NLN0",
+        "entry_name": "LDH_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 34405,
+        "gene_name": "'Name=ldh {ECO:0000255|HAMAP-Rule:MF_00488}; OrderedLocusNames=Cgl2911, cg3219;'"
+    },
+    "CEY17_RS01490": {
+        "accessions": "P42455",
+        "entry_name": "LEU1_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 68188,
+        "gene_name": "'Name=leuA {ECO:0000255|HAMAP-Rule:MF_00572}; OrderedLocusNames=Cgl0248, cg0303;'"
+    },
+    "CEY17_RS06955": {
+        "accessions": "P94631",
+        "entry_name": "LEU3_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 36145,
+        "gene_name": "'Name=leuB; OrderedLocusNames=Cgl1286, cg1453;'"
+    },
+    "CEY17_RS07100": {
+        "accessions": "P58946",
+        "entry_name": "LEUC_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 51705,
+        "gene_name": "'Name=leuC {ECO:0000255|HAMAP-Rule:MF_01026}; OrderedLocusNames=Cgl1315, cg1487;'"
+    },
+    "CEY17_RS07105": {
+        "accessions": "Q8NQV7",
+        "entry_name": "LEUD_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 22199,
+        "gene_name": "'Name=leuD {ECO:0000255|HAMAP-Rule:MF_01031}; OrderedLocusNames=Cgl1316, cg1488;'"
+    },
+    "CEY17_RS06840": {
+        "accessions": "P94633",
+        "entry_name": "LYSE_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 25082,
+        "gene_name": "'Name=lysE; OrderedLocusNames=Cgl1262, cg1424;'"
+    },
+    "CEY17_RS05470": {
+        "accessions": "P35865",
+        "entry_name": "LYSI_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 53630,
+        "gene_name": "'Name=lysI; OrderedLocusNames=Cgl0968, cg1105;'"
+    },
+    "CEY17_RS11435": {
+        "accessions": "P42450",
+        "entry_name": "MASZ_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 82363,
+        "gene_name": "'Name=glcB {ECO:0000255|HAMAP-Rule:MF_00641}; Synonyms=aceB; OrderedLocusNames=Cgl2329, cg2559;'"
+    },
+    "CEY17_RS04540": {
+        "accessions": "Q8NS49",
+        "entry_name": "MCTC_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 57268,
+        "gene_name": "'Name=mctC {ECO:0000303|PubMed:19028892}; OrderedLocusNames=Cgl0833 {ECO:0000312|EMBL:BAB98226.1};'"
+    },
+    "CEY17_RS11680": {
+        "accessions": "Q8NN33",
+        "entry_name": "MDH_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 34908,
+        "gene_name": "'Name=mdh {ECO:0000255|HAMAP-Rule:MF_01517}; OrderedLocusNames=Cgl2380, cg2613;'"
+    },
+    "CEY17_RS02665": {
+        "accessions": "Q8NT39",
+        "entry_name": "MENG_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 25245,
+        "gene_name": "'Name=menG {ECO:0000255|HAMAP-Rule:MF_01813}; OrderedLocusNames=Cgl0471, cg0556;'"
+    },
+    "CEY17_RS06230": {
+        "accessions": "Q8NRB3",
+        "entry_name": "METE_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 81313,
+        "gene_name": "'Name=metE {ECO:0000255|HAMAP-Rule:MF_00172}; OrderedLocusNames=Cgl1139, cg1290;'"
+    },
+    "CEY17_RS08570": {
+        "accessions": "Q9K5E4",
+        "entry_name": "METK_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 44177,
+        "gene_name": "'Name=metK {ECO:0000255|HAMAP-Rule:MF_00086}; OrderedLocusNames=Cgl1603, cg1806;'"
+    },
+    "CEY17_RS03515": {
+        "accessions": "Q8NSN2",
+        "entry_name": "METN_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 39103,
+        "gene_name": "'Name=metN {ECO:0000255|HAMAP-Rule:MF_01719}; OrderedLocusNames=Cgl0636, cg0736;'"
+    },
+    "CEY17_RS03590": {
+        "accessions": "O68640",
+        "entry_name": "METXA_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 41178,
+        "gene_name": "'Name=metXA {ECO:0000255|HAMAP-Rule:MF_00296, ECO:0000303|PubMed:28581482}; Synonyms=metA {ECO:0000303|PubMed:9666465}; OrderedLocusNames=Cgl0652, cg0754;'"
+    },
+    "CEY17_RS09220": {
+        "accessions": "Q8NP72",
+        "entry_name": "MIAA_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 33082,
+        "gene_name": "'Name=miaA {ECO:0000255|HAMAP-Rule:MF_00185}; OrderedLocusNames=Cgl1944, cg2130;'"
+    },
+    "CEY17_RS06525": {
+        "accessions": "Q8NR60",
+        "entry_name": "MOAA_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 41280,
+        "gene_name": "'Name=moaA {ECO:0000255|HAMAP-Rule:MF_01225}; OrderedLocusNames=Cgl1197, cg1352;'"
+    },
+    "CEY17_RS09510": {
+        "accessions": "O69282",
+        "entry_name": "MQO_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 54832,
+        "gene_name": "'Name=mqo; OrderedLocusNames=Cgl2001, cg2192;'"
+    },
+    "CEY17_RS10605": {
+        "accessions": "Q8NNN2",
+        "entry_name": "MRAY_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 39268,
+        "gene_name": "'Name=mraY {ECO:0000255|HAMAP-Rule:MF_00038}; OrderedLocusNames=Cgl2161, cg2372;'"
+    },
+    "CEY17_RS02285": {
+        "accessions": "Q8NTA6",
+        "entry_name": "MSHA_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 45669,
+        "gene_name": "'Name=mshA; OrderedLocusNames=Cgl0401, cg0481;'"
+    },
+    "CEY17_RS06035": {
+        "accessions": "Q8NRE9",
+        "entry_name": "MSHB_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 30921,
+        "gene_name": "'Name=mshB {ECO:0000255|HAMAP-Rule:MF_01696}; OrderedLocusNames=Cgl1100, cg1250;'"
+    },
+    "CEY17_RS08150": {
+        "accessions": "Q8NQC4",
+        "entry_name": "MSHC_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 44115,
+        "gene_name": "'Name=mshC; Synonyms=cysS2; OrderedLocusNames=Cgl1514, cg1709;'"
+    },
+    "CEY17_RS13165": {
+        "accessions": "Q8NMJ7",
+        "entry_name": "MSHD_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 32134,
+        "gene_name": "'Name=mshD {ECO:0000255|HAMAP-Rule:MF_01698}; OrderedLocusNames=Cgl2576, cg2847;'"
+    },
+    "CEY17_RS14930": {
+        "accessions": "Q8NLL5",
+        "entry_name": "MSRA_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 23931,
+        "gene_name": "'Name=msrA {ECO:0000255|HAMAP-Rule:MF_01401}; OrderedLocusNames=Cgl2926, cg3236;'"
+    },
+    "CEY17_RS13050": {
+        "accessions": "Q8NML5",
+        "entry_name": "MURA_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 44197,
+        "gene_name": "'Name=murA {ECO:0000255|HAMAP-Rule:MF_00111}; OrderedLocusNames=Cgl2558, cg2829;'"
+    },
+    "CEY17_RS02270": {
+        "accessions": "Q8NTB0",
+        "entry_name": "MURB2_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 38886,
+        "gene_name": "'Name=murB2; OrderedLocusNames=Cgl0397, cg0476;'"
+    },
+    "CEY17_RS10585": {
+        "accessions": "P94335",
+        "entry_name": "MURC_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 51181,
+        "gene_name": "'Name=murC {ECO:0000255|HAMAP-Rule:MF_00046}; OrderedLocusNames=Cgl2157, cg2368;'"
+    },
+    "CEY17_RS10615": {
+        "accessions": "Q8NNN0",
+        "entry_name": "MURE_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 53862,
+        "gene_name": "'Name=murE {ECO:0000255|HAMAP-Rule:MF_00208}; OrderedLocusNames=Cgl2163, cg2374;'"
+    },
+    "CEY17_RS10590": {
+        "accessions": "Q8NNN5",
+        "entry_name": "MURG_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 36697,
+        "gene_name": "'Name=murG {ECO:0000255|HAMAP-Rule:MF_00033}; OrderedLocusNames=Cgl2158, cg2369;'"
+    },
+    "CEY17_RS12785": {
+        "accessions": "Q9XDZ7",
+        "entry_name": "MURI_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 29230,
+        "gene_name": "'Name=murI {ECO:0000255|HAMAP-Rule:MF_00258}; OrderedLocusNames=Cgl2509, cg2762;'"
+    },
+    "CEY17_RS05880": {
+        "accessions": "Q8NRI0",
+        "entry_name": "NADA_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 42876,
+        "gene_name": "'Name=nadA {ECO:0000255|HAMAP-Rule:MF_00569}; OrderedLocusNames=Cgl1069, cg1216;'"
+    },
+    "CEY17_RS11550": {
+        "accessions": "Q8NN57",
+        "entry_name": "NADD_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 24581,
+        "gene_name": "'Name=nadD {ECO:0000255|HAMAP-Rule:MF_00244}; OrderedLocusNames=Cgl2352, cg2584;'"
+    },
+    "CEY17_RS12900": {
+        "accessions": "Q8NMN7",
+        "entry_name": "NADE_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 30426,
+        "gene_name": "'Name=nadE {ECO:0000255|HAMAP-Rule:MF_00193}; OrderedLocusNames=Cgl2534, cg2792;'"
+    },
+    "CEY17_RS07605": {
+        "accessions": "Q8NQM1",
+        "entry_name": "NADK_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 31155,
+        "gene_name": "'Name=nadK {ECO:0000255|HAMAP-Rule:MF_00361}; OrderedLocusNames=Cgl1413, cg1601;'"
+    },
+    "CEY17_RS13515": {
+        "accessions": "Q8NMD4",
+        "entry_name": "NAGB_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 27278,
+        "gene_name": "'Name=nagB {ECO:0000255|HAMAP-Rule:MF_01241}; OrderedLocusNames=Cgl2644, cg2928;'"
+    },
+    "CEY17_RS11630": {
+        "accessions": "Q8NN43",
+        "entry_name": "NDK_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 14800,
+        "gene_name": "'Name=ndk {ECO:0000255|HAMAP-Rule:MF_00451}; OrderedLocusNames=Cgl2370, cg2603;'"
+    },
+    "CEY17_RS03550": {
+        "accessions": "Q8NSM4",
+        "entry_name": "NPD_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 28628,
+        "gene_name": "'Name=cobB {ECO:0000255|HAMAP-Rule:MF_01121}; OrderedLocusNames=Cgl0644, cg0745;'"
+    },
+    "CEY17_RS12885": {
+        "accessions": "Q9XD64",
+        "entry_name": "NRDI_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 16409,
+        "gene_name": "'Name=nrdI; OrderedLocusNames=Cgl2531, cg2787;'"
+    },
+    "CEY17_RS06180": {
+        "accessions": "Q8NRC3",
+        "entry_name": "ODO12_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 134664,
+        "gene_name": "'Name=odhA {ECO:0000312|EMBL:CAF19835.1}; OrderedLocusNames=Cgl1129, cg1280;'"
+    },
+    "CEY17_RS11015": {
+        "accessions": "Q8NNF6",
+        "entry_name": "ODP1_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 102826,
+        "gene_name": "'Name=aceE; OrderedLocusNames=Cgl2248, cg2466;'"
+    },
+    "CEY17_RS10830": {
+        "accessions": "Q8NNJ2",
+        "entry_name": "ODP2_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 70905,
+        "gene_name": "'Name=aceF; Synonyms=sucB; OrderedLocusNames=Cgl2207, cg2421;'"
+    },
+    "CEY17_RS07515": {
+        "accessions": "Q59283",
+        "entry_name": "OTC_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 34329,
+        "gene_name": "'Name=argF; OrderedLocusNames=Cgl1398, cg1584;'"
+    },
+    "CEY17_RS02330": {
+        "accessions": "P0C1E4",
+        "entry_name": "P5CR_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 28242,
+        "gene_name": "'Name=proC {ECO:0000255|HAMAP-Rule:MF_01925}; OrderedLocusNames=Cgl0410, cg0490;'"
+    },
+    "CEY17_RS00730": {
+        "accessions": "Q9X712",
+        "entry_name": "PANB_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 28324,
+        "gene_name": "'Name=panB; OrderedLocusNames=Cgl0114, cg0149;'"
+    },
+    "CEY17_RS00725": {
+        "accessions": "Q9X713",
+        "entry_name": "PANC_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 29888,
+        "gene_name": "'Name=panC; OrderedLocusNames=Cgl0113, cg0148;'"
+    },
+    "CEY17_RS00825": {
+        "accessions": "Q9X4N0",
+        "entry_name": "PAND_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 14147,
+        "gene_name": "'Name=panD {ECO:0000255|HAMAP-Rule:MF_00446}; OrderedLocusNames=Cgl0135, cg0172;'"
+    },
+    "CEY17_RS01305": {
+        "accessions": "Q8NTT4",
+        "entry_name": "PATR_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 36450,
+        "gene_name": "'Name=pat; OrderedLocusNames=Cgl0218, cg0267;'"
+    },
+    "CEY17_RS14610": {
+        "accessions": "Q9AEM1",
+        "entry_name": "PCKG_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 66874,
+        "gene_name": "'Name=pckG {ECO:0000255|HAMAP-Rule:MF_00452}; Synonyms=pck; OrderedLocusNames=Cgl2863, cg3169;'"
+    },
+    "CEY17_RS04235": {
+        "accessions": "P82134",
+        "entry_name": "PDXS_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 33313,
+        "gene_name": "'Name=pdxS {ECO:0000255|HAMAP-Rule:MF_01824}; OrderedLocusNames=Cgl0788, cg0898;'"
+    },
+    "CEY17_RS04240": {
+        "accessions": "Q8NS90",
+        "entry_name": "PDXT_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 21272,
+        "gene_name": "'Name=pdxT {ECO:0000255|HAMAP-Rule:MF_01615}; OrderedLocusNames=Cgl0789, cg0899;'"
+    },
+    "CEY17_RS06790": {
+        "accessions": "Q8NR14",
+        "entry_name": "PFKA_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 37464,
+        "gene_name": "'Name=pfkA {ECO:0000255|HAMAP-Rule:MF_01976}; OrderedLocusNames=Cgl1250, cg1409;'"
+    },
+    "CEY17_RS08490": {
+        "accessions": "Q01655",
+        "entry_name": "PGK_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 42697,
+        "gene_name": "'Name=pgk; OrderedLocusNames=Cgl1587, cg1790;'"
+    },
+    "CEY17_RS14775": {
+        "accessions": "P10341",
+        "entry_name": "PHEA_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 33740,
+        "gene_name": "'Name=pheA; OrderedLocusNames=Cgl2899, cg3207;'"
+    },
+    "CEY17_RS07840": {
+        "accessions": "Q8NQH4",
+        "entry_name": "PHNC_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 28953,
+        "gene_name": "'Name=phnC {ECO:0000255|HAMAP-Rule:MF_01713}; OrderedLocusNames=Cgl1460, cg1651;'"
+    },
+    "CEY17_RS04830": {
+        "accessions": "Q8NRZ6",
+        "entry_name": "PMT_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 58734,
+        "gene_name": "'Name=pmt; OrderedLocusNames=Cgl0890, cg1014;'"
+    },
+    "CEY17_RS10570": {
+        "accessions": "P94338",
+        "entry_name": "POLOX_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 26004,
+        "gene_name": "'OrderedLocusNames=Cgl2154, cg2365;'"
+    },
+    "CEY17_RS11560": {
+        "accessions": "P0C1E0",
+        "entry_name": "PROA_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 45667,
+        "gene_name": "'Name=proA {ECO:0000255|HAMAP-Rule:MF_00412}; OrderedLocusNames=Cgl2354, cg2586;'"
+    },
+    "CEY17_RS11570": {
+        "accessions": "P0C1E2",
+        "entry_name": "PROB_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 38626,
+        "gene_name": "'Name=proB {ECO:0000255|HAMAP-Rule:MF_00456}; OrderedLocusNames=Cgl2356, cg2588;'"
+    },
+    "CEY17_RS15920": {
+        "accessions": "Q79VC4",
+        "entry_name": "PROP_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 54276,
+        "gene_name": "'Name=proP {ECO:0000303|PubMed:9811661}; OrderedLocusNames=Cgl3066 {ECO:0000312|EMBL:BAC00460.1};'"
+    },
+    "CEY17_RS03810": {
+        "accessions": "Q8NSH8",
+        "entry_name": "PRPB1_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 33415,
+        "gene_name": "'Name=prpB1 {ECO:0000255|HAMAP-Rule:MF_01939}; OrderedLocusNames=Cgl0695, cg0797;'"
+    },
+    "CEY17_RS03615": {
+        "accessions": "Q8NSL2",
+        "entry_name": "PRPB2_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 33275,
+        "gene_name": "'Name=prpB2 {ECO:0000255|HAMAP-Rule:MF_01939}; OrderedLocusNames=Cgl0658, cg0760;'"
+    },
+    "CEY17_RS03815": {
+        "accessions": "Q8NSH7",
+        "entry_name": "PRPC1_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 42567,
+        "gene_name": "'Name=prpC1; OrderedLocusNames=Cgl0696, cg0798;'"
+    },
+    "CEY17_RS03620": {
+        "accessions": "Q8NSL1",
+        "entry_name": "PRPC2_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 42595,
+        "gene_name": "'Name=prpC2; OrderedLocusNames=Cgl0659, cg0762;'"
+    },
+    "CEY17_RS03805": {
+        "accessions": "Q8NSH9",
+        "entry_name": "PRPD1_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 55013,
+        "gene_name": "'Name=prpD1; OrderedLocusNames=Cgl0694, cg0796;'"
+    },
+    "CEY17_RS03610": {
+        "accessions": "Q8NSL3",
+        "entry_name": "PRPD2_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 55396,
+        "gene_name": "'Name=prpD2; OrderedLocusNames=Cgl0657, cg0759;'"
+    },
+    "CEY17_RS13145": {
+        "accessions": "Q8NMK1",
+        "entry_name": "PSTB_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 28213,
+        "gene_name": "'Name=pstB {ECO:0000255|HAMAP-Rule:MF_01702}; OrderedLocusNames=Cgl2572, cg2843;'"
+    },
+    "CEY17_RS14060": {
+        "accessions": "P77844",
+        "entry_name": "PTAS_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 35238,
+        "gene_name": "'Name=pta; OrderedLocusNames=Cgl2753, cg3048;'"
+    },
+    "CEY17_RS05065": {
+        "accessions": "Q8NRV3",
+        "entry_name": "PTH1_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 19077,
+        "gene_name": "'Name=pth1 {ECO:0000255|HAMAP-Rule:MF_00083}; OrderedLocusNames=Cgl0938, cg1071;'"
+    },
+    "CEY17_RS05045": {
+        "accessions": "Q8NRV6",
+        "entry_name": "PTH2_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 21695,
+        "gene_name": "'Name=pth2 {ECO:0000255|HAMAP-Rule:MF_00083}; OrderedLocusNames=Cgl0935, cg1067;'"
+    },
+    "CEY17_RS07320": {
+        "accessions": "Q46072",
+        "entry_name": "PTN3B_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 72571,
+        "gene_name": "'Name=ptsM; Synonyms=ptsG; OrderedLocusNames=Cgl1360, cg1537;'"
+    },
+    "CEY17_RS13285": {
+        "accessions": "Q8NMH3",
+        "entry_name": "PUR2_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 43545,
+        "gene_name": "'Name=purD {ECO:0000255|HAMAP-Rule:MF_00138}; OrderedLocusNames=Cgl2600, cg2878;'"
+    },
+    "CEY17_RS13270": {
+        "accessions": "Q8NMH6",
+        "entry_name": "PUR7_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 32990,
+        "gene_name": "'Name=purC {ECO:0000255|HAMAP-Rule:MF_00137}; OrderedLocusNames=Cgl2597, cg2874;'"
+    },
+    "CEY17_RS04685": {
+        "accessions": "Q8NS21",
+        "entry_name": "PUR9_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 55760,
+        "gene_name": "'Name=purH {ECO:0000255|HAMAP-Rule:MF_00139}; OrderedLocusNames=Cgl0861, cg0984;'"
+    },
+    "CEY17_RS14095": {
+        "accessions": "Q8NM16",
+        "entry_name": "PURA_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 46769,
+        "gene_name": "'Name=purA {ECO:0000255|HAMAP-Rule:MF_00011}; OrderedLocusNames=Cgl2766, cg3063;'"
+    },
+    "CEY17_RS13225": {
+        "accessions": "Q8NMI5",
+        "entry_name": "PURL_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 80842,
+        "gene_name": "'Name=purL {ECO:0000255|HAMAP-Rule:MF_00420}; OrderedLocusNames=Cgl2588, cg2862;'"
+    },
+    "CEY17_RS13230": {
+        "accessions": "Q8NMI4",
+        "entry_name": "PURQ_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 23540,
+        "gene_name": "'Name=purQ {ECO:0000255|HAMAP-Rule:MF_00421}; OrderedLocusNames=Cgl2589, cg2863;'"
+    },
+    "CEY17_RS14090": {
+        "accessions": "Q8NM23",
+        "entry_name": "PURT_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 44050,
+        "gene_name": "'Name=purT {ECO:0000255|HAMAP-Rule:MF_01643}; OrderedLocusNames=Cgl2759, cg3054;'"
+    },
+    "CEY17_RS08615": {
+        "accessions": "Q8NQ38",
+        "entry_name": "PYRB_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 33894,
+        "gene_name": "'Name=pyrB {ECO:0000255|HAMAP-Rule:MF_00001}; OrderedLocusNames=Cgl1612, cg1816;'"
+    },
+    "CEY17_RS08610": {
+        "accessions": "Q8NQ39",
+        "entry_name": "PYRC_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 47827,
+        "gene_name": "'Name=pyrC {ECO:0000255|HAMAP-Rule:MF_00220}; OrderedLocusNames=Cgl1611, cg1815;'"
+    },
+    "CEY17_RS08170": {
+        "accessions": "Q8NQC0",
+        "entry_name": "PYRD_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 39561,
+        "gene_name": "'Name=pyrD {ECO:0000255|HAMAP-Rule:MF_00225}; OrderedLocusNames=Cgl1518, cg1713;'"
+    },
+    "CEY17_RS14130": {
+        "accessions": "Q8NM11",
+        "entry_name": "PYRE_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 19445,
+        "gene_name": "'Name=pyrE {ECO:0000255|HAMAP-Rule:MF_01208}; OrderedLocusNames=Cgl2773, cg3071;'"
+    },
+    "CEY17_RS08595": {
+        "accessions": "Q8NQ40",
+        "entry_name": "PYRF_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 28920,
+        "gene_name": "'Name=pyrF {ECO:0000255|HAMAP-Rule:MF_01215}; OrderedLocusNames=Cgl1608, cg1812;'"
+    },
+    "CEY17_RS07625": {
+        "accessions": "Q8NQL7",
+        "entry_name": "PYRG_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 60574,
+        "gene_name": "'Name=pyrG {ECO:0000255|HAMAP-Rule:MF_01227}; OrderedLocusNames=Cgl1417, cg1606;'"
+    },
+    "CEY17_RS09610": {
+        "accessions": "P59004",
+        "entry_name": "PYRH_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 26183,
+        "gene_name": "'Name=pyrH {ECO:0000255|HAMAP-Rule:MF_01220}; OrderedLocusNames=Cgl2024, cg2218;'"
+    },
+    "CEY17_RS08620": {
+        "accessions": "P59011",
+        "entry_name": "PYRR_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 20952,
+        "gene_name": "'Name=pyrR {ECO:0000255|HAMAP-Rule:MF_01219}; OrderedLocusNames=Cgl1613, cg1817;'"
+    },
+    "CEY17_RS10750": {
+        "accessions": "Q79VE8",
+        "entry_name": "QCRA_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 45184,
+        "gene_name": "'Name=qcrA; OrderedLocusNames=Cgl2190, cg2404;'"
+    },
+    "CEY17_RS10745": {
+        "accessions": "Q79VE9",
+        "entry_name": "QCRB_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 59809,
+        "gene_name": "'Name=qcrB; OrderedLocusNames=Cgl2189, cg2403;'"
+    },
+    "CEY17_RS10755": {
+        "accessions": "Q8NNK5",
+        "entry_name": "QCRC_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 29867,
+        "gene_name": "'Name=qcrC; OrderedLocusNames=Cgl2191, cg2405;'"
+    },
+    "CEY17_RS08820": {
+        "accessions": "O87331",
+        "entry_name": "RELA_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 84447,
+        "gene_name": "'Name=relA; Synonyms=rel; OrderedLocusNames=Cgl1653, cg1861;'"
+    },
+    "CEY17_RS08530": {
+        "accessions": "Q8NQ52",
+        "entry_name": "RIBBA_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 45824,
+        "gene_name": "'Name=ribBA {ECO:0000255|HAMAP-Rule:MF_01283}; OrderedLocusNames=Cgl1595, cg1798;'"
+    },
+    "CEY17_RS08525": {
+        "accessions": "Q8NQ53",
+        "entry_name": "RISB_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 16476,
+        "gene_name": "'Name=ribH {ECO:0000255|HAMAP-Rule:MF_00178}; OrderedLocusNames=Cgl1594, cg1797;'"
+    },
+    "CEY17_RS02765": {
+        "accessions": "Q8NT29",
+        "entry_name": "RL10_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 17957,
+        "gene_name": "'Name=rplJ {ECO:0000255|HAMAP-Rule:MF_00362}; OrderedLocusNames=Cgl0485, cg0572;'"
+    },
+    "CEY17_RS03245": {
+        "accessions": "Q8NST6",
+        "entry_name": "RL13_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 16281,
+        "gene_name": "'Name=rplM {ECO:0000255|HAMAP-Rule:MF_01366}; OrderedLocusNames=Cgl0581, cg0673;'"
+    },
+    "CEY17_RS02930": {
+        "accessions": "Q8NSZ4",
+        "entry_name": "RL14_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 13338,
+        "gene_name": "'Name=rplN {ECO:0000255|HAMAP-Rule:MF_01367}; OrderedLocusNames=Cgl0521, cg0608;'"
+    },
+    "CEY17_RS03035": {
+        "accessions": "P0C544",
+        "entry_name": "RL15_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 15427,
+        "gene_name": "'Name=rplO {ECO:0000255|HAMAP-Rule:MF_01341}; OrderedLocusNames=Cgl0542, cg0634;'"
+    },
+    "CEY17_RS02905": {
+        "accessions": "Q8NT00",
+        "entry_name": "RL16_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 15728,
+        "gene_name": "'Name=rplP {ECO:0000255|HAMAP-Rule:MF_01342}; OrderedLocusNames=Cgl0515, cg0602;'"
+    },
+    "CEY17_RS03170": {
+        "accessions": "Q8NSV1",
+        "entry_name": "RL17_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 17518,
+        "gene_name": "'Name=rplQ {ECO:0000255|HAMAP-Rule:MF_01368}; OrderedLocusNames=Cgl0566, cg0656;'"
+    },
+    "CEY17_RS03020": {
+        "accessions": "Q8NSX6",
+        "entry_name": "RL18_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 14745,
+        "gene_name": "'Name=rplR {ECO:0000255|HAMAP-Rule:MF_01337}; OrderedLocusNames=Cgl0539, cg0630;'"
+    },
+    "CEY17_RS09995": {
+        "accessions": "Q8NNZ0",
+        "entry_name": "RL19_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 12875,
+        "gene_name": "'Name=rplS {ECO:0000255|HAMAP-Rule:MF_00402}; OrderedLocusNames=Cgl2037, cg2235;'"
+    },
+    "CEY17_RS02725": {
+        "accessions": "Q9LAK5",
+        "entry_name": "RL1_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 25046,
+        "gene_name": "'Name=rplA {ECO:0000255|HAMAP-Rule:MF_01318}; OrderedLocusNames=Cgl0477, cg0564;'"
+    },
+    "CEY17_RS07430": {
+        "accessions": "Q8NQP6",
+        "entry_name": "RL20_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 14725,
+        "gene_name": "'Name=rplT {ECO:0000255|HAMAP-Rule:MF_00382}; OrderedLocusNames=Cgl1380, cg1565;'"
+    },
+    "CEY17_RS11605": {
+        "accessions": "Q8NN50",
+        "entry_name": "RL21_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 10859,
+        "gene_name": "'Name=rplU {ECO:0000255|HAMAP-Rule:MF_01363}; OrderedLocusNames=Cgl2363, cg2595;'"
+    },
+    "CEY17_RS02895": {
+        "accessions": "Q8NT02",
+        "entry_name": "RL22_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 12970,
+        "gene_name": "'Name=rplV {ECO:0000255|HAMAP-Rule:MF_01331}; OrderedLocusNames=Cgl0513, cg0600;'"
+    },
+    "CEY17_RS02880": {
+        "accessions": "Q8NT06",
+        "entry_name": "RL23_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 11088,
+        "gene_name": "'Name=rplW {ECO:0000255|HAMAP-Rule:MF_01369}; OrderedLocusNames=Cgl0508, cg0597;'"
+    },
+    "CEY17_RS02935": {
+        "accessions": "Q8NSZ3",
+        "entry_name": "RL24_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 11189,
+        "gene_name": "'Name=rplX {ECO:0000255|HAMAP-Rule:MF_01326}; OrderedLocusNames=Cgl0522, cg0609;'"
+    },
+    "CEY17_RS11600": {
+        "accessions": "Q8NN51",
+        "entry_name": "RL27_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 9441,
+        "gene_name": "'Name=rpmA {ECO:0000255|HAMAP-Rule:MF_00539}; OrderedLocusNames=Cgl2362, cg2594;'"
+    },
+    "CEY17_RS04720": {
+        "accessions": "Q8NS15",
+        "entry_name": "RL28_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 8831,
+        "gene_name": "'Name=rpmB {ECO:0000255|HAMAP-Rule:MF_00373}; OrderedLocusNames=Cgl0869, cg0991;'"
+    },
+    "CEY17_RS02910": {
+        "accessions": "Q8NSZ9",
+        "entry_name": "RL29_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 8765,
+        "gene_name": "'Name=rpmC {ECO:0000255|HAMAP-Rule:MF_00374}; OrderedLocusNames=Cgl0516, cg0603;'"
+    },
+    "CEY17_RS02885": {
+        "accessions": "Q8NT05",
+        "entry_name": "RL2_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 31125,
+        "gene_name": "'Name=rplB {ECO:0000255|HAMAP-Rule:MF_01320}; OrderedLocusNames=Cgl0510, cg0598;'"
+    },
+    "CEY17_RS03030": {
+        "accessions": "Q8NSX3",
+        "entry_name": "RL30_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 6863,
+        "gene_name": "'Name=rpmD {ECO:0000255|HAMAP-Rule:MF_01371}; OrderedLocusNames=Cgl0541, cg0632;'"
+    },
+    "CEY17_RS04735": {
+        "accessions": "Q8NS12",
+        "entry_name": "RL31B_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 10009,
+        "gene_name": "'Name=rpmE2 {ECO:0000255|HAMAP-Rule:MF_00502}; Synonyms=rpmE; OrderedLocusNames=Cgl0872, cg0994;'"
+    },
+    "CEY17_RS04740": {
+        "accessions": "Q8NS11",
+        "entry_name": "RL32_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 6620,
+        "gene_name": "'Name=rpmF {ECO:0000255|HAMAP-Rule:MF_00340}; OrderedLocusNames=Cgl0873, cg0995;'"
+    },
+    "CEY17_RS04715": {
+        "accessions": "Q8NS16",
+        "entry_name": "RL33_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 6463,
+        "gene_name": "'Name=rpmG {ECO:0000255|HAMAP-Rule:MF_00294}; OrderedLocusNames=Cgl0868, cg0990;'"
+    },
+    "CEY17_RS16100": {
+        "accessions": "Q6M1C1",
+        "entry_name": "RL34_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 5503,
+        "gene_name": "'Name=rpmH {ECO:0000255|HAMAP-Rule:MF_00391}; OrderedLocusNames=Cgl3099, cg3432;'"
+    },
+    "CEY17_RS07425": {
+        "accessions": "Q8NQP7",
+        "entry_name": "RL35_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 7255,
+        "gene_name": "'Name=rpmI {ECO:0000255|HAMAP-Rule:MF_00514}; OrderedLocusNames=Cgl1379, cg1564;'"
+    },
+    "CEY17_RS12895": {
+        "accessions": "P61173",
+        "entry_name": "RL36_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 4695,
+        "gene_name": "'Name=rpmJ {ECO:0000255|HAMAP-Rule:MF_00251}; OrderedLocusNames=Cgl2533, cg2791;'"
+    },
+    "CEY17_RS02870": {
+        "accessions": "Q8NT09",
+        "entry_name": "RL3_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 23159,
+        "gene_name": "'Name=rplC {ECO:0000255|HAMAP-Rule:MF_01325}; OrderedLocusNames=Cgl0505, cg0594;'"
+    },
+    "CEY17_RS02875": {
+        "accessions": "Q8NT08",
+        "entry_name": "RL4_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 23609,
+        "gene_name": "'Name=rplD {ECO:0000255|HAMAP-Rule:MF_01328}; OrderedLocusNames=Cgl0507, cg0596;'"
+    },
+    "CEY17_RS02940": {
+        "accessions": "Q8NSZ2",
+        "entry_name": "RL5_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 21789,
+        "gene_name": "'Name=rplE {ECO:0000255|HAMAP-Rule:MF_01333}; OrderedLocusNames=Cgl0523, cg0610;'"
+    },
+    "CEY17_RS03015": {
+        "accessions": "Q8NSX7",
+        "entry_name": "RL6_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 19335,
+        "gene_name": "'Name=rplF {ECO:0000255|HAMAP-Rule:MF_01365}; OrderedLocusNames=Cgl0538, cg0629;'"
+    },
+    "CEY17_RS15520": {
+        "accessions": "Q8NLG1",
+        "entry_name": "RL9_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 15940,
+        "gene_name": "'Name=rplI {ECO:0000255|HAMAP-Rule:MF_00503}; OrderedLocusNames=Cgl2981, cg3306;'"
+    },
+    "CEY17_RS10175": {
+        "accessions": "Q8NNV6",
+        "entry_name": "RNC_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 27481,
+        "gene_name": "'Name=rnc {ECO:0000255|HAMAP-Rule:MF_00104}; OrderedLocusNames=Cgl2074, cg2273;'"
+    },
+    "CEY17_RS16095": {
+        "accessions": "Q8NL51",
+        "entry_name": "RNPA_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 14481,
+        "gene_name": "'Name=rnpA {ECO:0000255|HAMAP-Rule:MF_00227}; OrderedLocusNames=Cgl3098, cg3431;'"
+    },
+    "CEY17_RS03165": {
+        "accessions": "Q8NSV2",
+        "entry_name": "RPOA_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 36670,
+        "gene_name": "'Name=rpoA {ECO:0000255|HAMAP-Rule:MF_00059}; OrderedLocusNames=Cgl0564, cg0655;'"
+    },
+    "CEY17_RS02795": {
+        "accessions": "Q8NT26",
+        "entry_name": "RPOB_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 128785,
+        "gene_name": "'Name=rpoB {ECO:0000255|HAMAP-Rule:MF_01321}; OrderedLocusNames=Cgl0488, cg0576;'"
+    },
+    "CEY17_RS02800": {
+        "accessions": "Q8NT25",
+        "entry_name": "RPOC_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 147295,
+        "gene_name": "'Name=rpoC {ECO:0000255|HAMAP-Rule:MF_01322}; OrderedLocusNames=Cgl0489, cg0577;'"
+    },
+    "CEY17_RS02865": {
+        "accessions": "P66326",
+        "entry_name": "RS10_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 11470,
+        "gene_name": "'Name=rpsJ {ECO:0000255|HAMAP-Rule:MF_00508}; OrderedLocusNames=Cgl0504, cg0593;'"
+    },
+    "CEY17_RS03155": {
+        "accessions": "Q8NSV5",
+        "entry_name": "RS11_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 14327,
+        "gene_name": "'Name=rpsK {ECO:0000255|HAMAP-Rule:MF_01310}; OrderedLocusNames=Cgl0562, cg0653;'"
+    },
+    "CEY17_RS02820": {
+        "accessions": "Q8NT21",
+        "entry_name": "RS12_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 13430,
+        "gene_name": "'Name=rpsL {ECO:0000255|HAMAP-Rule:MF_00403}; OrderedLocusNames=Cgl0493, cg0581;'"
+    },
+    "CEY17_RS03150": {
+        "accessions": "Q8NSV6",
+        "entry_name": "RS13_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 13834,
+        "gene_name": "'Name=rpsM {ECO:0000255|HAMAP-Rule:MF_01315}; OrderedLocusNames=Cgl0561, cg0652;'"
+    },
+    "CEY17_RS04710": {
+        "accessions": "Q8NS17",
+        "entry_name": "RS14_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 11732,
+        "gene_name": "'Name=rpsN {ECO:0000255|HAMAP-Rule:MF_00537}; OrderedLocusNames=Cgl0867, cg0989;'"
+    },
+    "CEY17_RS09385": {
+        "accessions": "Q8NP49",
+        "entry_name": "RS15_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 10310,
+        "gene_name": "'Name=rpsO {ECO:0000255|HAMAP-Rule:MF_01343}; OrderedLocusNames=Cgl1976, cg2167;'"
+    },
+    "CEY17_RS10075": {
+        "accessions": "Q8NNX3",
+        "entry_name": "RS16_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 17837,
+        "gene_name": "'Name=rpsP {ECO:0000255|HAMAP-Rule:MF_00385}; OrderedLocusNames=Cgl2054, cg2253;'"
+    },
+    "CEY17_RS02915": {
+        "accessions": "Q8NSZ7",
+        "entry_name": "RS17_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 10580,
+        "gene_name": "'Name=rpsQ {ECO:0000255|HAMAP-Rule:MF_01345}; OrderedLocusNames=Cgl0517, cg0604;'"
+    },
+    "CEY17_RS04705": {
+        "accessions": "P66455",
+        "entry_name": "RS18_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 9755,
+        "gene_name": "'Name=rpsR {ECO:0000255|HAMAP-Rule:MF_00270}; OrderedLocusNames=Cgl0866, cg0988;'"
+    },
+    "CEY17_RS02890": {
+        "accessions": "P66482",
+        "entry_name": "RS19_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 10460,
+        "gene_name": "'Name=rpsS {ECO:0000255|HAMAP-Rule:MF_00531}; OrderedLocusNames=Cgl0511, cg0599;'"
+    },
+    "CEY17_RS11505": {
+        "accessions": "Q8NN66",
+        "entry_name": "RS20_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 9553,
+        "gene_name": "'Name=rpsT {ECO:0000255|HAMAP-Rule:MF_00500}; OrderedLocusNames=Cgl2343, cg2573;'"
+    },
+    "CEY17_RS09620": {
+        "accessions": "Q8NP01",
+        "entry_name": "RS2_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 30119,
+        "gene_name": "'Name=rpsB {ECO:0000255|HAMAP-Rule:MF_00291}; OrderedLocusNames=Cgl2026, cg2222;'"
+    },
+    "CEY17_RS02900": {
+        "accessions": "Q8NT01",
+        "entry_name": "RS3_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 28109,
+        "gene_name": "'Name=rpsC {ECO:0000255|HAMAP-Rule:MF_01309}; OrderedLocusNames=Cgl0514, cg0601;'"
+    },
+    "CEY17_RS03160": {
+        "accessions": "Q8NSV4",
+        "entry_name": "RS4_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 23329,
+        "gene_name": "'Name=rpsD {ECO:0000255|HAMAP-Rule:MF_01306}; OrderedLocusNames=Cgl0563, cg0654;'"
+    },
+    "CEY17_RS03025": {
+        "accessions": "Q8NSX5",
+        "entry_name": "RS5_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 22670,
+        "gene_name": "'Name=rpsE {ECO:0000255|HAMAP-Rule:MF_01307}; OrderedLocusNames=Cgl0540, cg0631;'"
+    },
+    "CEY17_RS15530": {
+        "accessions": "Q8NLF9",
+        "entry_name": "RS6_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 10959,
+        "gene_name": "'Name=rpsF {ECO:0000255|HAMAP-Rule:MF_00360}; OrderedLocusNames=Cgl2983, cg3308;'"
+    },
+    "CEY17_RS02825": {
+        "accessions": "Q8NT20",
+        "entry_name": "RS7_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 17481,
+        "gene_name": "'Name=rpsG {ECO:0000255|HAMAP-Rule:MF_00480}; OrderedLocusNames=Cgl0494, cg0582;'"
+    },
+    "CEY17_RS03010": {
+        "accessions": "Q8NSX8",
+        "entry_name": "RS8_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 14290,
+        "gene_name": "'Name=rpsH {ECO:0000255|HAMAP-Rule:MF_01302}; OrderedLocusNames=Cgl0537, cg0628;'"
+    },
+    "CEY17_RS03250": {
+        "accessions": "Q8NST5",
+        "entry_name": "RS9_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 19665,
+        "gene_name": "'Name=rpsI {ECO:0000255|HAMAP-Rule:MF_00532}; OrderedLocusNames=Cgl0582, cg0674;'"
+    },
+    "CEY17_RS04045": {
+        "accessions": "Q8NSC4",
+        "entry_name": "SAHH_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 51996,
+        "gene_name": "'Name=ahcY {ECO:0000255|HAMAP-Rule:MF_00563}; Synonyms=sahH; OrderedLocusNames=Cgl0752, cg0860;'"
+    },
+    "CEY17_RS15525": {
+        "accessions": "Q8NLG0",
+        "entry_name": "SSB_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 23301,
+        "gene_name": "'Name=ssb; OrderedLocusNames=Cgl2982, cg3307;'"
+    },
+    "CEY17_RS13100": {
+        "accessions": "Q8NMK7",
+        "entry_name": "SUCC_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 41764,
+        "gene_name": "'Name=sucC {ECO:0000255|HAMAP-Rule:MF_00558}; OrderedLocusNames=Cgl2566, cg2837;'"
+    },
+    "CEY17_RS08720": {
+        "accessions": "Q8NQ22",
+        "entry_name": "SYA_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 96226,
+        "gene_name": "'Name=alaS {ECO:0000255|HAMAP-Rule:MF_00036}; OrderedLocusNames=Cgl1632, cg1838;'"
+    },
+    "CEY17_RS13500": {
+        "accessions": "Q8NMD7",
+        "entry_name": "SYC_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 51047,
+        "gene_name": "'Name=cysS {ECO:0000255|HAMAP-Rule:MF_00041}; Synonyms=cysS1; OrderedLocusNames=Cgl2641, cg2924;'"
+    },
+    "CEY17_RS08735": {
+        "accessions": "Q8NQ19",
+        "entry_name": "SYDND_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 67010,
+        "gene_name": "'Name=aspS {ECO:0000255|HAMAP-Rule:MF_00044}; OrderedLocusNames=Cgl1635, cg1841;'"
+    },
+    "CEY17_RS07470": {
+        "accessions": "Q8NQN7",
+        "entry_name": "SYFA_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 37846,
+        "gene_name": "'Name=pheS {ECO:0000255|HAMAP-Rule:MF_00281}; OrderedLocusNames=Cgl1389, cg1574;'"
+    },
+    "CEY17_RS07475": {
+        "accessions": "Q8NQN6",
+        "entry_name": "SYFB_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 89436,
+        "gene_name": "'Name=pheT {ECO:0000255|HAMAP-Rule:MF_00283}; OrderedLocusNames=Cgl1390, cg1575;'"
+    },
+    "CEY17_RS11180": {
+        "accessions": "Q8NNC6",
+        "entry_name": "SYG_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 53044,
+        "gene_name": "'Name=glyQS {ECO:0000255|HAMAP-Rule:MF_00253}; Synonyms=glyS; OrderedLocusNames=Cgl2278, cg2499;'"
+    },
+    "CEY17_RS08790": {
+        "accessions": "Q8NQ07",
+        "entry_name": "SYH_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 47126,
+        "gene_name": "'Name=hisS {ECO:0000255|HAMAP-Rule:MF_00127}; OrderedLocusNames=Cgl1647, cg1855;'"
+    },
+    "CEY17_RS10540": {
+        "accessions": "Q8NNP0",
+        "entry_name": "SYI_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 117404,
+        "gene_name": "'Name=ileS {ECO:0000255|HAMAP-Rule:MF_02003}; OrderedLocusNames=Cgl2148, cg2359;'"
+    },
+    "CEY17_RS15690": {
+        "accessions": "Q8NLC4",
+        "entry_name": "SYL_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 106779,
+        "gene_name": "'Name=leuS {ECO:0000255|HAMAP-Rule:MF_00049}; OrderedLocusNames=Cgl3018, cg3346;'"
+    },
+    "CEY17_RS04845": {
+        "accessions": "Q8NRZ4",
+        "entry_name": "SYM_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 67619,
+        "gene_name": "'Name=metG {ECO:0000255|HAMAP-Rule:MF_00098}; Synonyms=metS; OrderedLocusNames=Cgl0893, cg1017;'"
+    },
+    "CEY17_RS09475": {
+        "accessions": "Q8NP31",
+        "entry_name": "SYP_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 64332,
+        "gene_name": "'Name=proS {ECO:0000255|HAMAP-Rule:MF_01569}; OrderedLocusNames=Cgl1994, cg2185;'"
+    },
+    "CEY17_RS06435": {
+        "accessions": "P35868",
+        "entry_name": "SYR_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 59723,
+        "gene_name": "'Name=argS; OrderedLocusNames=Cgl1179, cg1333;'"
+    },
+    "CEY17_RS14750": {
+        "accessions": "Q8NLP6",
+        "entry_name": "SYS_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 46472,
+        "gene_name": "'Name=serS {ECO:0000255|HAMAP-Rule:MF_00176}; OrderedLocusNames=Cgl2893, cg3201;'"
+    },
+    "CEY17_RS08910": {
+        "accessions": "Q8NPZ0",
+        "entry_name": "SYT_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 77621,
+        "gene_name": "'Name=thrS {ECO:0000255|HAMAP-Rule:MF_00184}; OrderedLocusNames=Cgl1671, cg1880;'"
+    },
+    "CEY17_RS11660": {
+        "accessions": "Q8NN37",
+        "entry_name": "SYV_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 101585,
+        "gene_name": "'Name=valS {ECO:0000255|HAMAP-Rule:MF_02004}; OrderedLocusNames=Cgl2376, cg2609;'"
+    },
+    "CEY17_RS03720": {
+        "accessions": "Q8NSJ4",
+        "entry_name": "SYW_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 37827,
+        "gene_name": "'Name=trpS {ECO:0000255|HAMAP-Rule:MF_00140}; OrderedLocusNames=Cgl0677, cg0779;'"
+    },
+    "CEY17_RS07550": {
+        "accessions": "Q8NQM8",
+        "entry_name": "SYY_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 46445,
+        "gene_name": "'Name=tyrS {ECO:0000255|HAMAP-Rule:MF_02006}; OrderedLocusNames=Cgl1406, cg1594;'"
+    },
+    "CEY17_RS07855": {
+        "accessions": "Q8NQH1",
+        "entry_name": "THIED_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 80355,
+        "gene_name": "'Name=theD; Synonyms=thiD1; OrderedLocusNames=Cgl1463, cg1654;'"
+    },
+    "CEY17_RS10015": {
+        "accessions": "Q8NNY6",
+        "entry_name": "THIG_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 27249,
+        "gene_name": "'Name=thiG {ECO:0000255|HAMAP-Rule:MF_00443}; OrderedLocusNames=Cgl2041, cg2239;'"
+    },
+    "CEY17_RS07135": {
+        "accessions": "Q8NQV0",
+        "entry_name": "THIL_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 34849,
+        "gene_name": "'Name=thiL {ECO:0000255|HAMAP-Rule:MF_02128}; OrderedLocusNames=Cgl1323, cg1495;'"
+    },
+    "CEY17_RS07860": {
+        "accessions": "Q8NQH0",
+        "entry_name": "THIM_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 26911,
+        "gene_name": "'Name=thiM {ECO:0000255|HAMAP-Rule:MF_00228}; OrderedLocusNames=Cgl1464, cg1655;'"
+    },
+    "CEY17_RS10890": {
+        "accessions": "P23669",
+        "entry_name": "THRC_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 52931,
+        "gene_name": "'Name=thrC; OrderedLocusNames=Cgl2220, cg2437;'"
+    },
+    "CEY17_RS03840": {
+        "accessions": "P71121",
+        "entry_name": "THTR_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 33494,
+        "gene_name": "'Name=thtR; OrderedLocusNames=Cgl0701, cg0803;'"
+    },
+    "CEY17_RS09365": {
+        "accessions": "P40111",
+        "entry_name": "THYX_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 28065,
+        "gene_name": "'Name=thyX {ECO:0000255|HAMAP-Rule:MF_01408}; OrderedLocusNames=Cgl1972, cg2162;'"
+    },
+    "CEY17_RS13780": {
+        "accessions": "Q6M2E8",
+        "entry_name": "TILS_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 33957,
+        "gene_name": "'Name=tilS {ECO:0000255|HAMAP-Rule:MF_01161}; OrderedLocusNames=Cgl2698, cg2986;'"
+    },
+    "CEY17_RS14620": {
+        "accessions": "Q8NLS3",
+        "entry_name": "TRMB_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 28806,
+        "gene_name": "'Name=trmB {ECO:0000255|HAMAP-Rule:MF_01057}; OrderedLocusNames=Cgl2865, cg3172;'"
+    },
+    "CEY17_RS15780": {
+        "accessions": "P06562",
+        "entry_name": "TRPA_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 29075,
+        "gene_name": "'Name=trpA {ECO:0000255|HAMAP-Rule:MF_00131}; OrderedLocusNames=Cgl3035, cg3364;'"
+    },
+    "CEY17_RS15775": {
+        "accessions": "P06561",
+        "entry_name": "TRPB_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 44797,
+        "gene_name": "'Name=trpB; OrderedLocusNames=Cgl3034, cg3363;'"
+    },
+    "CEY17_RS15770": {
+        "accessions": "P06560",
+        "entry_name": "TRPC_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 50477,
+        "gene_name": "'Name=trpC; Synonyms=trpCF; OrderedLocusNames=Cgl3033, cg3362;'"
+    },
+    "CEY17_RS15765": {
+        "accessions": "P06559",
+        "entry_name": "TRPD_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 36633,
+        "gene_name": "'Name=trpD {ECO:0000255|HAMAP-Rule:MF_00211}; OrderedLocusNames=Cgl3032, cg3361;'"
+    },
+    "CEY17_RS15755": {
+        "accessions": "P06557",
+        "entry_name": "TRPE_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 56384,
+        "gene_name": "'Name=trpE; OrderedLocusNames=Cgl3029, cg3359;'"
+    },
+    "CEY17_RS15760": {
+        "accessions": "P06558",
+        "entry_name": "TRPG_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 21875,
+        "gene_name": "'Name=trpG; OrderedLocusNames=Cgl3031, cg3360;'"
+    },
+    "CEY17_RS04600": {
+        "accessions": "Q8NS38",
+        "entry_name": "TYSY_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 30230,
+        "gene_name": "'Name=thyA {ECO:0000255|HAMAP-Rule:MF_00008}; OrderedLocusNames=Cgl0844, cg0966;'"
+    },
+    "CEY17_RS08155": {
+        "accessions": "Q8NQC3",
+        "entry_name": "UPPP_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 31578,
+        "gene_name": "'Name=uppP {ECO:0000255|HAMAP-Rule:MF_01006}; Synonyms=bacA, upk; OrderedLocusNames=Cgl1515, cg1710;'"
+    },
+    "CEY17_RS03755": {
+        "accessions": "P58998",
+        "entry_name": "UPP_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 22523,
+        "gene_name": "'Name=upp {ECO:0000255|HAMAP-Rule:MF_01218}; OrderedLocusNames=Cgl0684, cg0786;'"
+    },
+    "CEY17_RS00580": {
+        "accessions": "Q79VJ3",
+        "entry_name": "URE1_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 61452,
+        "gene_name": "'Name=ureC {ECO:0000255|HAMAP-Rule:MF_01953}; OrderedLocusNames=Cgl0086, cg0115;'"
+    },
+    "CEY17_RS00575": {
+        "accessions": "Q79VJ4",
+        "entry_name": "URE2_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 17568,
+        "gene_name": "'Name=ureB {ECO:0000255|HAMAP-Rule:MF_01954}; OrderedLocusNames=Cgl0085, cg0114;'"
+    },
+    "CEY17_RS00570": {
+        "accessions": "Q9RHM6",
+        "entry_name": "URE3_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 11245,
+        "gene_name": "'Name=ureA {ECO:0000255|HAMAP-Rule:MF_00739}; OrderedLocusNames=Cgl0084, cg0113;'"
+    },
+    "CEY17_RS00600": {
+        "accessions": "Q79VJ0",
+        "entry_name": "URED_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 31646,
+        "gene_name": "'Name=ureD1 {ECO:0000255|HAMAP-Rule:MF_01384}; OrderedLocusNames=Cgl0090, cg0119;'"
+    },
+    "CEY17_RS00585": {
+        "accessions": "Q9RHM3",
+        "entry_name": "UREE_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 17644,
+        "gene_name": "'Name=ureE {ECO:0000255|HAMAP-Rule:MF_00822}; OrderedLocusNames=Cgl0087, cg0116;'"
+    },
+    "CEY17_RS00590": {
+        "accessions": "Q79VJ2",
+        "entry_name": "UREF_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 25000,
+        "gene_name": "'Name=ureF {ECO:0000255|HAMAP-Rule:MF_01385}; OrderedLocusNames=Cgl0088, cg0117;'"
+    },
+    "CEY17_RS00595": {
+        "accessions": "Q79VJ1",
+        "entry_name": "UREG_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 22418,
+        "gene_name": "'Name=ureG {ECO:0000255|HAMAP-Rule:MF_01389}; OrderedLocusNames=Cgl0089, cg0118;'"
+    },
+    "CEY17_RS12630": {
+        "accessions": "Q8NMT1",
+        "entry_name": "UXAC_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 57454,
+        "gene_name": "'Name=uxaC; OrderedLocusNames=Cgl2484, cg2731;'"
+    },
+    "CEY17_RS05630": {
+        "accessions": "Q8NRP4",
+        "entry_name": "Y1004_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 26380,
+        "gene_name": "'OrderedLocusNames=Cgl1004, cg1141;'"
+    },
+    "CEY17_RS06880": {
+        "accessions": "P42531",
+        "entry_name": "Y1270_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 52551,
+        "gene_name": "'OrderedLocusNames=Cgl1270, cg1434;'"
+    },
+    "CEY17_RS10850": {
+        "accessions": "Q8NNI8",
+        "entry_name": "Y2211_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 57150,
+        "gene_name": "'OrderedLocusNames=Cgl2211, cg2425;'"
+    },
+    "CEY17_RS11565": {
+        "accessions": "P0C1E8",
+        "entry_name": "Y2355_CORGL",
+        "organism": "'Corynebacterium glutamicum (strain ATCC 13032 / DSM 20300 / JCM 1318 / LMG 3730 / NCIMB 10025).'",
+        "mw": 33053,
+        "gene_name": "'OrderedLocusNames=Cgl2355, cg2587;'"
+    }
+}
