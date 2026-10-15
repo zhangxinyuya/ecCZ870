@@ -1,35 +1,12 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
-"""
-batch_predict_parallel.py
-=========================
-Batch parallel prediction script for metabolic engineering target identification.
-Fully based on ecfb.py — no dependency on ecbridge.py / ecfseof.py.
+# Author: Zhang xinyu
+# Date: 2026-10-15
 
-Supported methods per compound:
-    'ecbridge' — run ecBridge only
-    'ecfseof'  — run ecFSEOF only
-    'ecfb'     — run both, merge + resolve conflicts, unified single-target test
-    'both'     — alias for 'ecfb'
+"""Batch target prediction with ecBridge, ecFSEOF, or combined ecFB.
 
-Output directory structure (ecfb mode — FLAT, no sub-folders per compound):
-    OUTPUT_BASE/
-        batch_YYYYMMDD_HHMMSS/
-            cpd00039/
-                cpd00039_ecfb_merged_input.csv   ← merged gene pool before testing
-                cpd00039_singletest_filtered.csv ← final validated targets
-            cpd00322/
-                ...
-            batch_summary.csv
-            all_targets_combined.csv
-            error_log.txt
-
-The 'sources' column in *_singletest_filtered.csv records which tool(s) correctly
-predicted the retained regulation direction:
-    'ecBridge'            — only ecBridge predicted this gene/direction
-    'ecFSEOF'             — only ecFSEOF predicted this gene/direction
-    'ecBridge+ecFSEOF'    — both tools predicted the same direction
-    (for conflict genes the source reflects the WINNING direction after testing)
+Each batch contains product directories, a summary, combined targets, and an error
+log when parallel predictions fail. In ecFB results, sources records the tools
+supporting the retained regulation direction, including resolved conflicts.
 """
 
 import os
@@ -44,15 +21,15 @@ import pandas as pd
 
 warnings.filterwarnings('ignore')
 
-# ---------------------------------------------------------------------------
-# Path setup
-# ---------------------------------------------------------------------------
+
+# Import paths
+
 SCRIPT_DIR   = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
 
 os.chdir(PROJECT_ROOT)
 
-# Automatically find all candidate directories and verify ecfb.py is reachable
+# Locate ecfb.py.
 _candidate_dirs = [
     SCRIPT_DIR,
     PROJECT_ROOT,
@@ -65,7 +42,7 @@ _candidate_dirs = [
 
 PATHS_TO_ADD = [p for p in _candidate_dirs if os.path.exists(p)]
 
-# Fail fast if ecfb.py is not findable — avoids silent subprocess errors
+# Stop if ecfb.py is missing.
 _found_ecfb = any(
     os.path.exists(os.path.join(p, 'ecfb.py')) for p in PATHS_TO_ADD
 )
@@ -80,7 +57,7 @@ for _p in PATHS_TO_ADD:
     if _p not in sys.path:
         sys.path.insert(0, _p)
 
-# Optional tqdm progress bar
+# Optional progress bar
 try:
     from tqdm import tqdm
     HAS_TQDM = True
@@ -89,12 +66,11 @@ except ImportError:
     print("Tip: install tqdm for progress bars (pip install tqdm)")
 
 
-# =============================================================================
-# Subprocess initialiser
-# =============================================================================
+# Worker setup
+
 
 def _init_worker(paths):
-    """Ensure sys.path is correct in every worker process."""
+    """Set import paths for worker processes."""
     import warnings
     warnings.filterwarnings('ignore')
     for p in paths:
@@ -102,27 +78,11 @@ def _init_worker(paths):
             sys.path.insert(0, p)
 
 
-# =============================================================================
-# Per-compound worker function
-# =============================================================================
+# Product prediction
+
 
 def _process_single_product(args):
-    """
-    Run the full prediction pipeline for one compound inside a subprocess.
-
-    Parameters (packed as a tuple)
-    --------------------------------
-    cpd, model_file, batch_output_dir, paths, method,
-    biomass_rxn, c_source_rxn,
-    ecb_num_step, ecb_bio_fraction, ecb_threshold, ecb_top_score_percentage,
-    efs_fseof_steps, efs_top_percentage,
-    st_improvement_threshold, st_exclusion_threshold,
-    debug_output, naming
-
-    Returns
-    -------
-    dict with keys: compound, method, ecfb_passed, ecfb_path, time, status, error
-    """
+    """Predict targets for one product and return counts, paths, timing, and errors."""
     (cpd, model_file, batch_output_dir, paths, method,
      biomass_rxn, c_source_rxn,
      ecb_num_step, ecb_bio_fraction, ecb_threshold, ecb_top_score_percentage,
@@ -135,7 +95,7 @@ def _process_single_product(args):
             sys.path.insert(0, p)
 
     start   = time.time()
-    # Each compound gets its own flat folder directly under the batch directory
+    # Create the product output directory.
     cpd_dir = os.path.join(batch_output_dir, cpd)
     os.makedirs(cpd_dir, exist_ok=True)
 
@@ -179,7 +139,7 @@ def _process_single_product(args):
         )
 
         def _count(path):
-            """Row count of a CSV, or None if missing."""
+            """Return the CSV row count, or None if unavailable."""
             if path and os.path.exists(path):
                 try:
                     return len(pd.read_csv(path))
@@ -210,16 +170,12 @@ def _process_single_product(args):
     return result
 
 
-# =============================================================================
-# Summary / aggregation helpers
-# =============================================================================
+# Result summaries
+
 
 def _save_summary(new_rows, existing_rows, batch_output_dir,
                   summary_file, method, final=False):
-    """
-    Write batch_summary.csv and (when final=True) all_targets_combined.csv.
-    Returns path of all_targets_combined.csv or None.
-    """
+    """Save the batch summary; combine successful targets on the final call."""
     all_rows = existing_rows + new_rows
     pd.DataFrame(all_rows).to_csv(summary_file, index=False)
 
@@ -256,7 +212,7 @@ def _save_summary(new_rows, existing_rows, batch_output_dir,
 
 
 def _print_result_line(result, idx, total, method):
-    """Print a one-line progress summary for a completed compound."""
+    """Print progress and a short error message if prediction failed."""
     ok   = result['status'] == 'success'
     icon = '✅' if ok else '❌'
 
@@ -273,9 +229,8 @@ def _print_result_line(result, idx, total, method):
         print(f"   ↳ {short_err}")
 
 
-# =============================================================================
-# Main parallel batch function
-# =============================================================================
+# Parallel prediction
+
 
 def batch_predict(
         model_file,
@@ -299,19 +254,11 @@ def batch_predict(
         debug_output             = False,
         naming                   = 'modelseed',
 ):
-    """
-    Parallel batch prediction using ecfb.run_prediction().
+    """Predict targets in parallel, optionally resuming a previous batch.
 
-    ecfb mode output per compound (FLAT — no sub-folders):
-        batch_XXXX/cpd00039/cpd00039_ecfb_merged_input.csv
-        batch_XXXX/cpd00039/cpd00039_singletest_filtered.csv
-
-    sources column values in singletest_filtered.csv:
-        'ecBridge'            — ecBridge only predicted this gene/direction
-        'ecFSEOF'             — ecFSEOF only predicted this gene/direction
-        'ecBridge+ecFSEOF'    — both tools agreed on the same direction
-        conflict genes        — sources = tool(s) that predicted the WINNING direction
-    """
+    Methods: ecbridge, ecfseof, ecfb; both is an alias for ecfb.
+    The sources column identifies tools supporting the retained regulation direction.
+    Return the summary DataFrame and batch output directory."""
     if method == 'both':
         method = 'ecfb'
     assert method in ('ecbridge', 'ecfseof', 'ecfb'), \
@@ -462,9 +409,8 @@ def batch_predict(
     return pd.read_csv(summary_file), batch_output_dir
 
 
-# =============================================================================
-# Serial version — for debugging
-# =============================================================================
+# Serial prediction
+
 
 def batch_predict_serial(
         model_file,
@@ -484,10 +430,7 @@ def batch_predict_serial(
         debug_output             = False,
         naming                   = 'modelseed',
 ):
-    """
-    Serial (single-process) batch prediction — recommended for debugging.
-    Exceptions propagate immediately with full stack traces.
-    """
+    """Predict targets sequentially for debugging and return the summary and output directory."""
     if method == 'both':
         method = 'ecfb'
     assert method in ('ecbridge', 'ecfseof', 'ecfb')
@@ -588,15 +531,14 @@ def batch_predict_serial(
     return summary_df, batch_output_dir
 
 
-# =============================================================================
-# Main entry point
-# =============================================================================
+# Example usage
+
 
 if __name__ == "__main__":
 
-    # ==================================================================
-    # Example A: ModelSEED model (your own model)
-    # ==================================================================
+
+    # ModelSEED configuration
+
     MODEL_FILE  = './model_Calibration/DLKcat_Calibration/ecCZ870_DLKcat_Calibration_modify.json'
     OUTPUT_DIR  = './batch_predict_results'
     BIOMASS_RXN = 'Bio_cgATCC14067_c'
@@ -611,9 +553,9 @@ if __name__ == "__main__":
         "cpd00066",
     ]
 
-    # ------------------------------------------------------------------
-    # Option A: Parallel prediction (production)
-    # ------------------------------------------------------------------
+
+    # Run parallel prediction.
+
     summary_df, output_dir = batch_predict(
         model_file               = MODEL_FILE,
         product_ids              = PRODUCT_IDS,
@@ -639,29 +581,3 @@ if __name__ == "__main__":
 
     print(summary_df.to_string(index=False))
     print(f"\nAll results saved in: {output_dir}")
-
-    # ==================================================================
-    # Example B: BiGG model (e.g. E. coli core model)
-    # Uncomment and adapt for BiGG-format models
-    # ==================================================================
-    # MODEL_FILE  = './models/e_coli_core.json'
-    # OUTPUT_DIR  = './batch_predict_results_bigg'
-    # BIOMASS_RXN = 'BIOMASS_Ecoli_core_w_GAM'
-    # C_SOURCE    = 'EX_glc__D_e'       # glucose exchange in BiGG
-    # NAMING      = 'bigg'
-    #
-    # PRODUCT_IDS = [
-    #     "succ",      # succinate (BiGG ID without compartment or EX_ prefix)
-    #     "lac__D",    # D-lactate
-    # ]
-    #
-    # summary_df, output_dir = batch_predict(
-    #     model_file               = MODEL_FILE,
-    #     product_ids              = PRODUCT_IDS,
-    #     method                   = 'ecfb',
-    #     output_base_dir          = OUTPUT_DIR,
-    #     biomass_rxn              = BIOMASS_RXN,
-    #     c_source_rxn             = C_SOURCE,
-    #     naming                   = NAMING,
-    #     n_workers                = 4,
-    # )

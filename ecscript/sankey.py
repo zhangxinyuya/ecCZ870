@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+# Author: Zhang xinyu
+# Date: 2026-10-15
+
 import os
 import re
 import glob
@@ -10,7 +14,7 @@ script_dir   = os.path.dirname(os.path.abspath(__file__))
 project_root = os.path.dirname(script_dir)
 os.chdir(project_root)
 
-# ─── 配置 ──────────────────────────────────────────────────────────────────
+
 BATCH_DIR      = "./ecfb_results/batch_20260404_010743"
 EXCEL_LIT_FILE = "Cgproduct.xlsx"
 OUTPUT_PNG     = "./conflict_sankey_ecfb.png"
@@ -20,7 +24,7 @@ PRODUCT_COL  = "Product"
 GENE_COL_LIT = "Gene in 14067"
 STRATEGY_COL = "Strategy"
 
-# ─── 工具函数 ────────────────────────────────────────────────────────────────
+
 def extract_cpd_code(text):
     m = re.search(r'cpd(\d{5})', str(text).lower())
     return f"cpd{m.group(1)}" if m else None
@@ -49,7 +53,7 @@ def find_type_col(df):
             return col
     return None
 
-# ─── 冲突类型分类 ─────────────────────────────────────────────────────────────
+
 def classify_conflict(row):
     is_conf = str(row.get('is_conflict', '')).strip().lower()
     if is_conf not in ('true', '1', 'yes'):
@@ -68,7 +72,7 @@ def classify_conflict(row):
     if oe_efs and kd_efs: return 'efs_internal'
     return None
 
-# ─── 加载文献 ────────────────────────────────────────────────────────────────
+
 def load_literature(excel_file):
     df = pd.read_excel(excel_file, sheet_name=0, header=0)
     df[PRODUCT_COL] = df[PRODUCT_COL].ffill()
@@ -87,7 +91,7 @@ def load_literature(excel_file):
     print(f"[文献] 共 {len(lit_dict)} 个产品: {sorted(lit_dict.keys())}")
     return lit_dict
 
-# ─── 追踪冲突基因 ─────────────────────────────────────────────────────────────
+
 def collect_conflict_data(batch_dir, lit_dict):
     rows = []
     cpd_dirs = sorted(glob.glob(os.path.join(batch_dir, 'cpd*')))
@@ -135,12 +139,12 @@ def collect_conflict_data(batch_dir, lit_dict):
                 fate    = filt_map[gene]
                 lit_dir = lit_targets.get(gene)
                 if gene in lit_targets:
-                    # ✅ 关键：只有方向一致才算 consistent
+                    # Require matching regulation directions.
                     lit_status = 'consistent' if lit_dir == fate else 'inconsistent'
                 else:
                     lit_status = 'not_in_lit'
             else:
-                fate, lit_status = 'removed', 'removed'   # 统一归入 removed
+                fate, lit_status = 'removed', 'removed'
 
             rows.append({'cpd': cpd, 'gene': gene,
                          'conflict_type': conflict_type,
@@ -153,7 +157,7 @@ def collect_conflict_data(batch_dir, lit_dict):
         print(df.groupby(['conflict_type', 'lit_status']).size().to_string())
     return df
 
-# ─── 贝塞尔流带 & 节点绘制 ────────────────────────────────────────────────────
+
 def _flow(ax, x0, yb0, yt0, x1, yb1, yt1, color, alpha=0.42):
     if yt0 <= yb0 or yt1 <= yb1: return
     xm = (x0 + x1) / 2
@@ -176,15 +180,14 @@ def _node(ax, x, yb, h, nw, color, label, n, side='right'):
             va='center', fontsize=9, color='#2c2c2a', zorder=5,
             linespacing=1.5, fontweight='medium')
 
-# ─── 主绘图函数（两列桑基图）─────────────────────────────────────────────────
+
 def build_sankey(df, output_file=OUTPUT_PNG):
     if df.empty:
         print("[错误] 无数据"); return
 
-    # ── 分类定义 ─────────────────────────────────────────────────────────
-    # 左列：冲突类型（上→下）
+
     CT   = ['ecb_internal', 'cross_tool', 'efs_internal']
-    # 右列：最终结果（上→下）；removed 排最下
+
     LIT  = ['consistent', 'inconsistent', 'not_in_lit', 'removed']
 
     CT_LABELS  = {
@@ -210,7 +213,7 @@ def build_sankey(df, output_file=OUTPUT_PNG):
         'removed':      '#b4b2a9',
     }
 
-    # ── 计数 ─────────────────────────────────────────────────────────────
+
     cnt = {}
     for ct in CT:
         for lit in LIT:
@@ -222,15 +225,15 @@ def build_sankey(df, output_file=OUTPUT_PNG):
     if n_total == 0:
         print("[错误] 冲突基因数为0"); return
 
-    # ── 布局 ─────────────────────────────────────────────────────────────
+
     H   = 8.0
     GAP = 0.25
     NW  = 0.40
-    X1, X2 = 1.2, 6.8          # 左列节点 x，右列节点 x
-    sc  = H / n_total           # 每个基因对应的高度
+    X1, X2 = 1.2, 6.8
+    sc  = H / n_total
 
     def positions(items, totals):
-        """从顶部往下排列节点，返回 {item: (y_bottom, height)}"""
+        """Place nodes top to bottom; return bottom coordinates and heights."""
         pos = {}; y = H
         for item in items:
             h = totals[item] * sc
@@ -242,13 +245,13 @@ def build_sankey(df, output_file=OUTPUT_PNG):
     ct_pos  = positions(CT,  ct_totals)
     lit_pos = positions(LIT, lit_totals)
 
-    # ── 绘图 ─────────────────────────────────────────────────────────────
+
     fig, ax = plt.subplots(figsize=(13, 7.5))
     ax.set_xlim(0, 11)
     ax.set_ylim(-0.3, H + 0.3)
     ax.axis('off')
 
-    # 流带：左 → 右，按冲突类型着色
+
     src_cursor = {ct:  ct_pos[ct][0]  + ct_pos[ct][1]  for ct in CT}
     tgt_cursor = {lit: lit_pos[lit][0] + lit_pos[lit][1] for lit in LIT}
 
@@ -262,16 +265,15 @@ def build_sankey(df, output_file=OUTPUT_PNG):
             src_cursor[ct]  -= h
             tgt_cursor[lit] -= h
 
-    # 左列节点（标注在左侧）
+
     for ct in CT:
         yb, h = ct_pos[ct]
         _node(ax, X1, yb, h, NW, CT_COLORS[ct], CT_LABELS[ct], ct_totals[ct], side='left')
 
-    # 右列节点（标注在右侧）
+
     for lit in LIT:
         yb, h = lit_pos[lit]
         _node(ax, X2, yb, h, NW, LIT_COLORS[lit], LIT_LABELS[lit], lit_totals[lit], side='right')
-
 
 
     plt.tight_layout()
@@ -279,7 +281,7 @@ def build_sankey(df, output_file=OUTPUT_PNG):
     print(f"[桑基图] 已保存: {output_file}")
     plt.show()
 
-# ─── 入口 ────────────────────────────────────────────────────────────────────
+
 if __name__ == '__main__':
     lit_dict = load_literature(EXCEL_LIT_FILE)
     df       = collect_conflict_data(BATCH_DIR, lit_dict)

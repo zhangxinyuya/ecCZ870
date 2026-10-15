@@ -1,20 +1,11 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
-"""
-three_source_comparison.py
-==========================
-Compare batch prediction results from ecBridge / ecFSEOF / ecFB.
+# Author: Zhang xinyu
+# Date: 2026-10-15
+"""Compare ecBridge, ecFSEOF, and ecFB batch predictions with literature.
 
-Counting rule
--------------
-- Gene count (denominator for hit rate): ALL unique genes, including conflict/BOTH.
-- Matched count (numerator): only OE/KD genes that agree with literature.
-  conflict/BOTH genes are direction-ambiguous and excluded from numerator only.
-
-Example:  ecBridge raw has 83 genes (OE=33, KD=14, conflict=36).
-          If 20 OE/KD genes match literature:
-              hit_rate = 20 / 83,   coverage = 20 / len(literature)
-"""
+Hit-rate denominators include all unique genes, including BOTH/conflict.
+Matches require an OE/KD gene-direction pair agreeing with literature.
+Coverage divides matches by the number of literature gene-direction pairs."""
 
 import re
 import warnings
@@ -34,7 +25,6 @@ plt.rcParams.update({
     'xtick.labelsize': 11, 'ytick.labelsize': 11, 'legend.fontsize': 11,
 })
 
-# ── helpers ───────────────────────────────────────────────────────────────────
 
 def _extract_cpd(text):
     m = re.search(r'cpd(\d{5})', str(text).lower())
@@ -42,7 +32,7 @@ def _extract_cpd(text):
 
 
 def _norm_reg(v):
-    """Return 'OE', 'KD', or None. BOTH/conflict → None (excluded from matching)."""
+    """Normalize directions to OE/KD; return None for ambiguous or unknown values."""
     if pd.isna(v):
         return None
     v = str(v).strip().upper()
@@ -50,7 +40,7 @@ def _norm_reg(v):
         return 'KD'
     if v in ('OE', 'UP', 'NEG_TO_POS'):
         return 'OE'
-    return None  # BOTH, conflict, unknown
+    return None
 
 
 def _detect_col(df, aliases):
@@ -65,10 +55,8 @@ def _is_rxn_id(v):
     return bool(re.match(r'^rxn\d+', v.strip().lower()))
 
 
-# ── rxn→gene map (for legacy ecBridge reaction-level output) ──────────────────
-
 def load_rxn_gene_map(map_file):
-    """Load rxn_id → [gene_id, ...] mapping from CSV."""
+    """Load reaction-to-gene mappings from CSV."""
     if not map_file or not Path(map_file).exists():
         return {}
     try:
@@ -87,13 +75,8 @@ def load_rxn_gene_map(map_file):
         return {}
 
 
-# ── core reading functions ────────────────────────────────────────────────────
-
 def _read_all_genes(csv_path, rxn_gene_map=None):
-    """
-    Count ALL unique genes in a prediction file (including conflict/BOTH).
-    This is the denominator for hit rate.
-    """
+    """Count unique genes, including BOTH/conflict, for the hit-rate denominator."""
     if not csv_path or not Path(csv_path).exists():
         return np.nan
     try:
@@ -102,7 +85,7 @@ def _read_all_genes(csv_path, rxn_gene_map=None):
             return 0
         gc = _detect_col(df, ['gene_id', 'gene', 'target']) or df.columns[0]
 
-        # Detect legacy reaction-ID format
+
         is_rxn = False
         if rxn_gene_map:
             for v in df[gc].dropna().head(5):
@@ -129,11 +112,7 @@ def _read_all_genes(csv_path, rxn_gene_map=None):
 
 
 def _read_clean_targets(csv_path, threshold=0.1, rxn_gene_map=None):
-    """
-    Return {(gene_id, reg)} for OE/KD genes only (conflict/BOTH excluded).
-    Applies improvement threshold when the column exists.
-    Used only for numerator of hit/coverage calculation.
-    """
+    """Return OE/KD gene-direction pairs, applying improvement filters when available."""
     if not csv_path or not Path(csv_path).exists():
         return set()
     try:
@@ -168,7 +147,7 @@ def _read_clean_targets(csv_path, threshold=0.1, rxn_gene_map=None):
 
             raw_type = str(row[tc]).strip() if (tc and pd.notna(row.get(tc))) else ''
             reg = _norm_reg(raw_type)
-            if reg is None:          # skip conflict / BOTH / unknown
+            if reg is None:
                 continue
 
             for tok in re.split(r'[;,]', target_str):
@@ -191,11 +170,9 @@ def _read_clean_targets(csv_path, threshold=0.1, rxn_gene_map=None):
         return set()
 
 
-# ── literature ────────────────────────────────────────────────────────────────
-
 def load_literature(excel_file, literature_col='Gene in 14067',
                     product_col='Product', strategy_col='Strategy'):
-    """Load literature targets → {cpd_id: {(gene, reg), ...}}."""
+    """Load literature targets as compound-to-gene-direction sets."""
     if not excel_file or not Path(excel_file).exists():
         print("No literature file provided — skipping hit/coverage calculation")
         return {}
@@ -232,8 +209,6 @@ def load_literature(excel_file, literature_col='Gene in 14067',
         print(f"Literature load failed: {e}")
         return {}
 
-
-# ── batch directory scan ──────────────────────────────────────────────────────
 
 def _find_csv(directory, keywords, recursive=False):
     if not Path(directory).exists():
@@ -280,7 +255,7 @@ def scan_batch_dir(batch_dir, method_name, lit_data=None,
                      or _find_csv(search_dir, ['filtered'])
                      or _find_csv(cpd_dir,    ['filtered'], recursive=True))
 
-        # Total gene counts (denominator — includes conflict/BOTH)
+
         raw_count  = _read_all_genes(raw_path,  use_map)
         filt_count = _read_all_genes(filt_path, use_map)
 
@@ -296,13 +271,13 @@ def scan_batch_dir(batch_dir, method_name, lit_data=None,
                 pred = _read_clean_targets(raw_path, threshold, use_map)
                 ov = len(pred & lit)
                 raw_cov = ov / len(lit)       * 100
-                raw_hit = ov / raw_count      * 100   # denominator = ALL genes
+                raw_hit = ov / raw_count      * 100
 
             if filt_path and not np.isnan(filt_count) and filt_count > 0:
                 pred = _read_clean_targets(filt_path, threshold, use_map)
                 ov = len(pred & lit)
                 filt_cov = ov / len(lit)      * 100
-                filt_hit = ov / filt_count    * 100   # denominator = ALL genes
+                filt_hit = ov / filt_count    * 100
 
         rec['raw_coverage']      = round(raw_cov,  2) if not np.isnan(raw_cov)  else np.nan
         rec['raw_hit_rate']      = round(raw_hit,  2) if not np.isnan(raw_hit)  else np.nan
@@ -317,8 +292,6 @@ def scan_batch_dir(batch_dir, method_name, lit_data=None,
     return records
 
 
-# ── plotting ──────────────────────────────────────────────────────────────────
-
 METHOD_ORDER  = ['ecBridge', 'ecFSEOF_Kp', 'ecFB']
 METHOD_COLORS = {
     'ecBridge':    ('#4C72B0', '#7BA3D4'),
@@ -328,7 +301,7 @@ METHOD_COLORS = {
 
 
 def plot_target_counts(df_all, output_dir):
-    """Bar chart: Raw vs Filtered average gene count per method."""
+    """Plot mean raw and filtered gene counts with SEM."""
     methods = [m for m in METHOD_ORDER if m in df_all['method'].values]
     n = len(methods)
 
@@ -387,7 +360,7 @@ def plot_target_counts(df_all, output_dir):
 
 
 def plot_coverage_hitrate(df_all, output_dir):
-    """Two-panel bar chart: Coverage Rate and Hit Rate (Raw vs Filtered)."""
+    """Plot raw and filtered coverage and hit rates with SEM."""
     df_lit = df_all.dropna(
         subset=['raw_coverage', 'filtered_coverage',
                 'raw_hit_rate', 'filtered_hit_rate'], how='all')
@@ -474,22 +447,14 @@ def plot_coverage_hitrate(df_all, output_dir):
     plt.close(fig)
 
 
-# ── ★ NEW: combined vertical figure ──────────────────────────────────────────
 def plot_combined_vertical(df_all, output_dir):
-    """
-    Single vertically-stacked figure with three panels:
-      Panel 1 (top)    — Target Count (Raw vs Filtered)
-      Panel 2 (middle) — Coverage Rate (Raw vs Filtered)
-      Panel 3 (bottom) — Hit Rate (Raw vs Filtered)
-
-    Saved as: comparison_combined_vertical.png
-    """
+    """Save a three-panel figure of target counts, coverage, and hit rates."""
     methods = [m for m in METHOD_ORDER if m in df_all['method'].values]
     n = len(methods)
     x = np.arange(n)
     w = 0.35
 
-    # ── collect stats ─────────────────────────────────────────────────────────
+
     raw_means = [df_all[df_all['method'] == m]['raw'].mean() for m in methods]
     raw_sems = [df_all[df_all['method'] == m]['raw'].sem() for m in methods]
     filt_means = [df_all[df_all['method'] == m]['filtered'].mean() for m in methods]
@@ -511,12 +476,12 @@ def plot_combined_vertical(df_all, output_dir):
                 ('fh_m', 'filtered_hit_rate', 'mean'), ('fh_s', 'filtered_hit_rate', 'sem'),
             ]}
 
-    # ── figure layout ─────────────────────────────────────────────────────────
+
     fig_w = max(7, n * 2.5)
     fig, axes = plt.subplots(3, 1, figsize=(fig_w, 18))
     fig.subplots_adjust(left=0.13, right=0.95, top=0.96, bottom=0.05, hspace=0.30)
 
-    # shared spine style helper
+
     def _style(ax):
         for s in ['left', 'bottom']:
             ax.spines[s].set_linewidth(1.2)
@@ -528,7 +493,7 @@ def plot_combined_vertical(df_all, output_dir):
         ax.set_xticks(x)
         ax.set_xticklabels(methods, fontsize=24, fontweight='bold')
 
-    # shared bar-label helper
+
     def _label_bars(ax, bars, means, sems, fmt='{:.1f}', offset=0.5):
         for bar, m, s in zip(bars, means, sems):
             if not np.isnan(m):
@@ -537,7 +502,7 @@ def plot_combined_vertical(df_all, output_dir):
                         fmt.format(m), ha='center', va='bottom',
                         fontsize=20, fontweight='bold')
 
-    # ── Panel 1: Target Count ─────────────────────────────────────────────────
+
     ax0 = axes[0]
     b_raw = ax0.bar(x - w / 2, raw_means, w, yerr=raw_sems, capsize=5,
                     alpha=0.85, edgecolor='white', label='Raw',
@@ -561,7 +526,7 @@ def plot_combined_vertical(df_all, output_dir):
                edgecolor='#ccc', fontsize=15)
     _style(ax0)
 
-    # ── Panel 2: Coverage Rate ────────────────────────────────────────────────
+
     ax1 = axes[1]
     if has_lit:
         rc_raw = [stats[m]['rc_m'] for m in methods]
@@ -590,7 +555,7 @@ def plot_combined_vertical(df_all, output_dir):
                   loc='center', pad=10)
     _style(ax1)
 
-    # ── Panel 3: Hit Rate ─────────────────────────────────────────────────────
+
     ax2 = axes[2]
     if has_lit:
         rh_raw = [stats[m]['rh_m'] for m in methods]
@@ -626,8 +591,6 @@ def plot_combined_vertical(df_all, output_dir):
     print(f"Fig 3 (combined vertical) saved: {out}")
     plt.close(fig)
 
-
-# ── main ──────────────────────────────────────────────────────────────────────
 
 def run_comparison(
     ecbridge_batch_dir,
@@ -684,15 +647,13 @@ def run_comparison(
 
     plot_target_counts(df_all, output_dir)
     plot_coverage_hitrate(df_all, output_dir)
-    plot_combined_vertical(df_all, output_dir)   # ★ NEW combined figure
+    plot_combined_vertical(df_all, output_dir)
 
     csv_out = output_dir / 'comparison_detail.csv'
     df_all.to_csv(csv_out, index=False)
     print(f"\nDetail CSV saved: {csv_out}")
     return df_all
 
-
-# ── entry point ───────────────────────────────────────────────────────────────
 
 if __name__ == '__main__':
 

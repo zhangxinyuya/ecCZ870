@@ -1,45 +1,13 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
-"""
-naming_convention.py
-====================
-Naming convention abstraction layer for metabolic model analysis.
-
-Supports two naming systems:
-  - **modelseed** : ModelSEED database naming
-      Reactions : rxn00001_c, rxn00001_c_num1  (isozymes)
-      Metabolites: cpd00001_c, cpd00001_e
-      Exchange  : EX_cpd00027_e, EX_cpd00027_e_reverse
-      Biomass   : Bio_cgATCC14067_c
-
-  - **bigg** : BiGG database naming
-      Reactions : PFK, PGK, GAPD
-      Metabolites: glc__D_c, atp_c
-      Exchange  : EX_glc__D_e
-      Biomass   : BIOMASS_Ecoli_core_w_GAM  (or similar BIOMASS_* prefix)
-
-Usage
------
-    from naming_convention import NamingConvention
-
-    nc = NamingConvention('bigg')
-    nc.is_bio_reaction('BIOMASS_Ecoli_core')        # True
-    nc.make_exchange_rxn('glc__D')                   # 'EX_glc__D_e'
-    nc.is_cofactor('atp_c')                          # True
-    nc.normalize_reaction_id('PFK')                  # 'PFK'
-
-    nc = NamingConvention('modelseed')
-    nc.is_bio_reaction('Bio_cgATCC14067_c')          # True
-    nc.make_exchange_rxn('cpd00027')                 # 'EX_cpd00027_e'
-    nc.normalize_reaction_id('rxn00001_c_num3')      # 'rxn00001_c'
-"""
+# Author: Zhang xinyu
+# Date: 2026-10-15
+"""Naming rules and exclusion sets for ModelSEED and BiGG metabolic models."""
 
 import re
 
 
-# =============================================================================
-# ModelSEED cofactors — the original set from ecfb.py
-# =============================================================================
+# ModelSEED cofactors
+
 _MODELSEED_COFACTORS = {
     'cpd00002_c', 'cpd00008_c', 'cpd00018_c', 'cpd00038_c', 'cpd00031_c', 'cpd00126_c',
     'cpd00052_c', 'cpd00096_c', 'cpd00046_c', 'cpd00062_c', 'cpd00014_c', 'cpd00091_c',
@@ -55,10 +23,10 @@ _MODELSEED_COFACTORS = {
     'protein_c', 'dna_c', 'rna_c',
 }
 
-# =============================================================================
-# BiGG cofactors — common cofactors found in BiGG-format models
-# Mapped from ModelSEED IDs where possible, plus standard BiGG names
-# =============================================================================
+
+# BiGG cofactors
+
+
 _BIGG_COFACTORS = {
     '2fe1s_c', '2fe2s_c', '35cgmp_c', '4fe4s_c', 'ACP_c', 'ade_c', 'adn_c', 'adp_c', 'ag_c', 'amp_c',
     'aps_c', 'arbtn_c', 'atp_c', 'bwco_c', 'bwco1gdp_c', 'bwcogdp_c', 'ca2_c', 'camp_c', 'cd2_c',
@@ -79,46 +47,32 @@ _BIGG_COFACTORS = {
     'xtp_c', 'zn2_c','protein_c', 'dna_c', 'rna_c',
 }
 
-# =============================================================================
-# ModelSEED excluded sets
-# =============================================================================
+
+# ModelSEED exclusions
+
 _MODELSEED_EXCLUDED_METABOLITES = {'cpd15500_c', 'cpd15499_c'}
 _MODELSEED_EXCLUDED_REACTIONS   = {'rxn05226_c', 'rxn05501_c', 'rxn05647_c','rxn00558_c_reverse'}
 
-# =============================================================================
-# BiGG excluded sets  — adjust these for your specific BiGG model
-# ETC electron carriers + PTS glucose transport
-# =============================================================================
+
+# BiGG exclusions
+
+
 _BIGG_EXCLUDED_METABOLITES = {'q8_c', 'q8h2_c', 'mqn8_c', 'mql8_c'}
-_BIGG_EXCLUDED_REACTIONS   = set()   # typically no hard-coded exclusions for BiGG
+_BIGG_EXCLUDED_REACTIONS   = set()
 
 
-# =============================================================================
-# Close-unwanted reactions per naming convention
-# =============================================================================
+# Reactions to close
+
 _MODELSEED_CLOSE_REACTIONS = ['EX_cpd00197_e_reverse',]
-_BIGG_CLOSE_REACTIONS      = []   # add BiGG-specific ones if needed
+_BIGG_CLOSE_REACTIONS      = []
 
 
 class NamingConvention:
-    """
-    Naming convention abstraction for ModelSEED vs BiGG metabolic models.
+    """Manage naming rules, cofactors, exclusions, and reactions to close.
 
-    Parameters
-    ----------
-    convention : str
-        Either 'modelseed' or 'bigg'.
+    Supported conventions: modelseed and bigg."""
 
-    Attributes
-    ----------
-    name                  : str   Convention name.
-    COMMON_COFACTORS      : set   Metabolite IDs treated as cofactors.
-    EXCLUDED_METABOLITES  : set   Metabolite IDs excluded from scoring.
-    EXCLUDED_REACTIONS    : set   Reaction IDs globally excluded.
-    CLOSE_REACTIONS       : list  Reactions to close (set bounds to 0,0).
-    """
 
-    # Allowed convention names
     VALID_CONVENTIONS = ('modelseed', 'bigg')
 
     def __init__(self, convention='modelseed'):
@@ -135,126 +89,68 @@ class NamingConvention:
             self.EXCLUDED_METABOLITES = _MODELSEED_EXCLUDED_METABOLITES.copy()
             self.EXCLUDED_REACTIONS   = _MODELSEED_EXCLUDED_REACTIONS.copy()
             self.CLOSE_REACTIONS      = list(_MODELSEED_CLOSE_REACTIONS)
-        else:  # bigg
+        else:
             self.COMMON_COFACTORS     = _BIGG_COFACTORS.copy()
             self.EXCLUDED_METABOLITES = _BIGG_EXCLUDED_METABOLITES.copy()
             self.EXCLUDED_REACTIONS   = _BIGG_EXCLUDED_REACTIONS.copy()
             self.CLOSE_REACTIONS      = list(_BIGG_CLOSE_REACTIONS)
 
-    # -----------------------------------------------------------------
-    # Cofactor / exclusion checks
-    # -----------------------------------------------------------------
 
     def is_cofactor(self, metabolite_id):
-        """Return True if the metabolite is a common cofactor."""
+        """Check whether the metabolite is listed as a cofactor."""
         return metabolite_id in self.COMMON_COFACTORS
 
     def is_excluded_metabolite(self, metabolite_id):
-        """Return True if the metabolite is in the hard exclusion list."""
+        """Check the metabolite exclusion set."""
         return metabolite_id in self.EXCLUDED_METABOLITES
 
     def is_excluded_reaction(self, reaction_id):
-        """Return True if the reaction is globally excluded."""
+        """Check the reaction exclusion set."""
         return reaction_id in self.EXCLUDED_REACTIONS
 
-    # -----------------------------------------------------------------
-    # Biomass reaction detection
-    # -----------------------------------------------------------------
 
     def is_bio_reaction(self, reaction_id):
-        """
-        Return True if the reaction is a biomass assembly reaction.
-
-        ModelSEED : starts with 'Bio_'
-        BiGG      : starts with 'BIOMASS_' (case-insensitive prefix check)
-        """
+        """Check the Bio_ prefix for ModelSEED or BIOMASS_ for BiGG."""
         if self.name == 'modelseed':
             return reaction_id.startswith('Bio_')
-        else:  # bigg
+        else:
             return reaction_id.upper().startswith('BIOMASS_')
 
-    # -----------------------------------------------------------------
-    # Exchange reaction construction
-    # -----------------------------------------------------------------
 
     def make_exchange_rxn(self, compound_id):
-        """
-        Build the exchange reaction ID for a given compound.
-
-        Both ModelSEED and BiGG use the pattern  EX_<compound>_e .
-        The compound_id should be the base metabolite ID WITHOUT the
-        compartment suffix.
-
-        Examples
-        --------
-        ModelSEED: make_exchange_rxn('cpd00027') → 'EX_cpd00027_e'
-        BiGG:      make_exchange_rxn('glc__D')   → 'EX_glc__D_e'
-        """
+        """Build EX_<compound_id>_e from a compartment-free compound ID."""
         return f'EX_{compound_id}_e'
 
-    # -----------------------------------------------------------------
-    # Reaction ID normalisation (isozyme handling)
-    # -----------------------------------------------------------------
 
     def normalize_reaction_id(self, reaction_id):
-        """
-        Strip isozyme suffix to obtain the base reaction ID.
-
-        ModelSEED : rxn00001_c_num3 → rxn00001_c
-        BiGG      : No standard isozyme suffix; returns as-is.
-        """
+        """Extract the ModelSEED base reaction ID; leave BiGG IDs unchanged."""
         if self.name == 'modelseed':
             pattern = r'(rxn\d{5}_[ce])'
             match = re.search(pattern, reaction_id)
             return match.group(1) if match else reaction_id
-        else:  # bigg — no standard isozyme suffix convention
+        else:
             return reaction_id
 
-    # -----------------------------------------------------------------
-    # Isozyme helper
-    # -----------------------------------------------------------------
 
     def find_isozyme_reactions(self, model, target_reaction_id):
-        """
-        Return all reactions sharing the same base ID.
-
-        ModelSEED : matches by stripping _numN suffix.
-        BiGG      : no standard isozyme naming, so returns only the
-                    target reaction itself (single-element list).
-        """
+        """Match ModelSEED reactions without _numN suffixes; return the BiGG target ID."""
         if self.name == 'modelseed':
             base_id = re.sub(r'_num\d+$', '', target_reaction_id)
             return [rxn.id for rxn in model.reactions
                     if re.sub(r'_num\d+$', '', rxn.id) == base_id]
-        else:  # bigg
-            # BiGG doesn't have a standard isozyme suffix.
-            # Return only the exact reaction.
+        else:
+
+
             return [target_reaction_id]
 
-    # -----------------------------------------------------------------
-    # Metabolite compartment check
-    # -----------------------------------------------------------------
 
     def is_cytoplasmic_metabolite(self, metabolite_id):
-        """
-        Return True if the metabolite belongs to the cytoplasmic compartment.
-
-        Both ModelSEED and BiGG use _c suffix for cytoplasm.
-        """
+        """Check the cytoplasmic suffix _c."""
         return metabolite_id.endswith('_c')
 
-    # -----------------------------------------------------------------
-    # Carbon source fallback search
-    # -----------------------------------------------------------------
 
     def find_carbon_source_fallback(self, model, c_source_rxn):
-        """
-        Search for a carbon-source reaction in the model if the primary
-        ID is not found.
-
-        ModelSEED : looks for 'cpd00027' (glucose) in reaction IDs.
-        BiGG      : looks for 'glc__D' or 'glc_D' (glucose) in reaction IDs.
-        """
+        """Find the first reaction containing cpd00027 or glc__D; otherwise keep the input ID."""
         if self.name == 'modelseed':
             keyword = 'cpd00027'
         else:
@@ -263,18 +159,9 @@ class NamingConvention:
         fallback = [r.id for r in model.reactions if keyword in r.id]
         return fallback[0] if fallback else c_source_rxn
 
-    # -----------------------------------------------------------------
-    # Product tag extraction (for debug file naming)
-    # -----------------------------------------------------------------
 
     def extract_product_tag(self, product_rxn):
-        """
-        Extract a short tag from the product exchange reaction ID
-        for use in debug file names.
-
-        'EX_cpd00027_e'  → 'cpd00027'
-        'EX_glc__D_e'    → 'glc__D'
-        """
+        """Remove EX_ and _e from a product exchange ID for file naming."""
         tag = product_rxn
         if tag.startswith('EX_'):
             tag = tag[3:]
@@ -282,9 +169,6 @@ class NamingConvention:
             tag = tag[:-2]
         return tag
 
-    # -----------------------------------------------------------------
-    # Summary / repr
-    # -----------------------------------------------------------------
 
     def __repr__(self):
         return (
@@ -295,7 +179,7 @@ class NamingConvention:
         )
 
     def summary(self):
-        """Print a summary of the convention for logging."""
+        """Print convention settings and a biomass ID example."""
         print(f"  Naming convention : {self.name}")
         print(f"    Cofactors       : {len(self.COMMON_COFACTORS)}")
         print(f"    Excluded mets   : {len(self.EXCLUDED_METABOLITES)}")

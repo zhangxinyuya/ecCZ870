@@ -1,55 +1,8 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
-"""
-predict_targets.py
-==================
-Unified metabolic engineering target prediction script.
+# Author: Zhang xinyu
+# Date: 2026-10-15
 
-Supported modes
----------------
-  ecbridge  : Run ecBridge (MOMA-covariance based) prediction only.
-              Outputs under:  ecbridge/<prefix>_raw_ecbridge.csv
-                              ecbridge/<prefix>_singletest_filtered.csv
-
-  ecfseof   : Run ecFSEOF (Enzyme-Constrained FSEOF) prediction only.
-              Outputs under:  ecfseof/<prefix>_raw_ecfseof.csv
-                              ecfseof/<prefix>_singletest_filtered.csv
-
-  ecfb      : Run both ecBridge AND ecFSEOF, merge their target lists,
-              resolve conflicting regulation directions bi-directionally,
-              then perform unified single-target validation.
-              Outputs under:  ecbridge/<prefix>_raw_ecbridge.csv
-                              ecfseof/<prefix>_raw_ecfseof.csv
-                              ecfb/<prefix>_merged_targets.csv
-                              ecfb/<prefix>_singletest_filtered.csv
-
-Usage example
--------------
-    from predict_targets import run_prediction
-    from cobra.io import load_json_model
-
-    model = load_json_model('my_model.json')
-
-    # ecBridge only
-    run_prediction(mode='ecbridge', model=model,
-                   product_id='cpd00103',
-                   biomass_rxn='Bio_cgATCC14067_c',
-                   output_dir='./results')
-
-    # ecFSEOF only
-    run_prediction(mode='ecfseof', model=model,
-                   product_id='cpd00103',
-                   biomass_rxn='Bio_cgATCC14067_c',
-                   output_dir='./results')
-
-    # Combined ecFB
-    run_prediction(mode='ecfb', model=model,
-                   product_id='cpd00103',
-                   biomass_rxn='Bio_cgATCC14067_c',
-                   output_dir='./results')
-
-All comments are in English.  Chinese original notes have been translated.
-"""
+"""Metabolic engineering target prediction with ecBridge, ecFSEOF, or combined ecFB."""
 
 import os
 import re
@@ -71,39 +24,34 @@ from cobra.flux_analysis import moma, pfba
 warnings.filterwarnings('ignore')
 os.environ['NUMEXPR_NUM_THREADS'] = '4'
 
-# =============================================================================
-# SECTION 0 — NAMING CONVENTION SUPPORT (ModelSEED / BiGG)
-# =============================================================================
+
+# NAMING CONVENTION SUPPORT (ModelSEED / BiGG)
+
 
 from naming_convention import NamingConvention
 
-# Default naming convention — used when callers do not supply one explicitly.
-# Individual functions accept a `naming` parameter to override.
+
 _DEFAULT_NAMING = NamingConvention('modelseed')
 
-# =============================================================================
-# SECTION 1 — SHARED CONSTANTS (convention-independent)
-# =============================================================================
 
-# NOTE: Convention-dependent sets (COMMON_COFACTORS, EXCLUDED_METABOLITES,
-#       EXCLUDED_REACTIONS) now live inside NamingConvention.
-#       The old module-level sets are kept as aliases for backward compatibility
-#       but should not be relied upon in new code.
+# SHARED CONSTANTS (convention-independent)
+
+
 COMMON_COFACTORS     = _DEFAULT_NAMING.COMMON_COFACTORS
 EXCLUDED_METABOLITES = _DEFAULT_NAMING.EXCLUDED_METABOLITES
 EXCLUDED_REACTIONS   = _DEFAULT_NAMING.EXCLUDED_REACTIONS
 
-# Hard-coded direction-exclusion rules for known mis-identifications (extend as needed)
+
 METABOLIC_EXCLUSION_KDdirection = []
 
-# Single-target test constants
-OEF            = 5.0   # Overexpression factor: kcat_MW *= OEF
-KDF            = 0.2   # Knockdown factor:      kcat_MW *= KDF
-GROWTH_FRACTION = 0.25  # Minimum growth fraction used during pFBA baseline
 
-# =============================================================================
-# SECTION 2 — SHARED UTILITY HELPERS
-# =============================================================================
+OEF            = 5.0
+KDF            = 0.2
+GROWTH_FRACTION = 0.25
+
+
+# SHARED UTILITY HELPERS
+
 
 def _get_nc(naming):
     """Return a NamingConvention, accepting None / str / NamingConvention."""
@@ -175,20 +123,13 @@ def _load_model(model_or_file):
     return model_or_file
 
 
-# =============================================================================
-# SECTION 3 — ecBRIDGE CORE ALGORITHM
-# =============================================================================
+# ecBRIDGE CORE ALGORITHM
 
-# ---------- 3.1  minpool optimiser ----------
+
+# minpool optimiser
 
 def _ecb_optimize_minimize_enzyme_pool(model, objective_rxn, fraction_of_optimum=1.0):
-    """
-    Two-stage optimisation used by ecBridge:
-      Stage 1 — maximise objective reaction.
-      Stage 2 — fix objective at fraction_of_optimum, minimise Σ(v / kcat_MW).
-
-    Returns a cobra.Solution.
-    """
+    """Maximize the target, then minimize enzyme cost at the requested target fraction."""
     model.objective = objective_rxn
     model.objective_direction = 'max'
     max_objective = model.slim_optimize()
@@ -222,13 +163,11 @@ def _ecb_optimize_minimize_enzyme_pool(model, objective_rxn, fraction_of_optimum
     return solution
 
 
-# ---------- 3.2  Active-reaction identification ----------
+# Active-reaction identification
 
 def _ecb_find_active_reactions(model, target_rxn, biomass_rxn, bio_fraction=0.1, naming=None):
-    """
-    Identify reactions carrying non-zero flux under production conditions.
-    Uses minpool when enzyme constraints are present; otherwise plain FBA.
-    """
+    """Identify reactions carrying non-zero flux under production conditions.
+    Uses minpool when enzyme constraints are present; otherwise plain FBA."""
     nc = _get_nc(naming)
     print("Analysing active reactions...")
     has_ec = check_enzyme_constraints(model)
@@ -278,25 +217,17 @@ def _ecb_find_active_reactions_standard(model, target_rxn, biomass_rxn, bio_frac
     return active
 
 
-# ---------- 3.3  MOMA analysis ----------
+# MOMA analysis
 
 def _ecb_run_moma_analysis(model, biomass_rxn, target_rxn, num_pts=10,
                             c_source_rxn='EX_cpd00027_e_reverse'):
-    """
-    MOMA-based flux sampling across the product-flux space.
+    """Sample fluxes with MOMA using a shared carbon uptake limit.
 
-    Calculates a unified carbon-source upper bound from a product-maximising FBA,
-    then scans the reaction-flux range with MOMA perturbations.
-
-    Returns
-    -------
-    df_cov   : pd.Series  — covariance of every reaction with target_rxn
-    df_flux  : pd.DataFrame — flux matrix (reactions × samples)
-    """
+    Return target covariances and the reaction-by-sample flux matrix."""
     print(f"Running MOMA analysis ({num_pts} sampling points)...")
     has_ec = check_enzyme_constraints(model)
 
-    # Compute unified carbon-source upper bound
+
     optimal_c_bound = None
     if c_source_rxn in [r.id for r in model.reactions]:
         c_rxn = model.reactions.get_by_id(c_source_rxn)
@@ -417,7 +348,7 @@ def _ecb_run_moma_analysis_qy(model, biomass_rxn, target_rxn, num_pts=10,
     print(f"  Successful samples: {successful}/{num_pts}")
     return df_cov[target_rxn], df_flux
 
-# ---------- 3.4  Metabolite direction extraction ----------
+# Metabolite direction extraction
 
 def _ecb_extract_metabolite_directions(model):
     """Return (dict_reactant, dict_product) for every metabolite in *model*."""
@@ -434,17 +365,11 @@ def _ecb_extract_metabolite_directions(model):
     return dict_reactant, dict_product
 
 
-# ---------- 3.5  Metabolite scoring ----------
+# Metabolite scoring
 
 def _ecb_calculate_metabolite_scores(model, df_cov, active_reactions, threshold=0.01, naming=None):
-    """
-    Score every metabolite using MOMA covariance signal (no topology weighting).
-    Score_Weighted == Score_Normalized.
-
-    Returns
-    -------
-    dict  metabolite_id → score dict
-    """
+    """Score every metabolite using MOMA covariance signal (no topology weighting).
+    Score_Weighted == Score_Normalized."""
     nc = _get_nc(naming)
     print("Calculating metabolite scores...")
 
@@ -498,20 +423,13 @@ def _ecb_calculate_metabolite_scores(model, df_cov, active_reactions, threshold=
     return metabolite_scores
 
 
-# ---------- 3.6  Target reaction identification ----------
+# Target reaction identification
 
 def _ecb_find_target_reactions(model, dict_reactant, dict_product,
                                 metabolite_scores, exclude_met_file=None, naming=None):
-    """
-    Classify candidate reactions into four priority tiers:
-
-      Priority 1  Neg_to_Pos      (Up)   — consume negative metabolite, produce positive
-      Priority 2  Pos_to_Neg      (Down) — consume positive metabolite, produce negative
-      Priority 3  Pos_Optimization (Up)  — redirect flux between two positive metabolites
-      Priority 4  Neg_Optimization (Up)  — convert worst negative metabolite to a less negative one
-
-    Higher-priority tiers cannot be overwritten by lower-priority tiers.
-    """
+    """Rank targets by metabolite conversion: negative-to-positive (Up),
+    positive-to-negative (Down), positive optimization (Up), then negative
+    optimization (Up). Higher priorities take precedence."""
     nc = _get_nc(naming)
     print("Identifying target reactions...")
 
@@ -536,7 +454,7 @@ def _ecb_find_target_reactions(model, dict_reactant, dict_product,
 
     target_reactions = {}
 
-    # ---- Priority 1: Neg_to_Pos ----------------------------------------
+
     print("  Processing Neg_to_Pos (highest priority)")
     neg_to_pos_count = excluded_count_1 = 0
 
@@ -574,7 +492,7 @@ def _ecb_find_target_reactions(model, dict_reactant, dict_product,
     if excluded_count_1:
         print(f"    {excluded_count_1} reactions excluded")
 
-    # ---- Priority 2: Pos_to_Neg ----------------------------------------
+
     print("  Processing Pos_to_Neg (secondary priority)")
 
     active_rules = []
@@ -651,7 +569,7 @@ def _ecb_find_target_reactions(model, dict_reactant, dict_product,
 
     print(f"    {pos_to_neg_count} Pos_to_Neg reactions found")
 
-    # ---- Priority 3: Pos_Optimization ----------------------------------
+
     print("  Processing Pos_Optimization (third priority)")
 
     sorted_pos = sorted(
@@ -697,7 +615,7 @@ def _ecb_find_target_reactions(model, dict_reactant, dict_product,
     return target_reactions
 
 
-# ---------- 3.7  Isozyme helper ----------
+# Isozyme helper
 
 def _ecb_find_isozyme_reactions(model, target_reaction_id, naming=None):
     """Return all reactions sharing the same base ID (ignoring _numN suffix)."""
@@ -705,15 +623,11 @@ def _ecb_find_isozyme_reactions(model, target_reaction_id, naming=None):
     return nc.find_isozyme_reactions(model, target_reaction_id)
 
 
-# ---------- 3.8  Result processing ----------
+# Result processing
 
 def _ecb_process_target_reactions(target_reactions, metabolite_scores, active_reactions,
                                    model, top_score_percentage=0.4, return_all=False, naming=None):
-    """
-    Build result DataFrames and apply the SoC-based percentile filter.
-
-    Returns (all_df, final_df) when return_all=True, else final_df.
-    """
+    """Build result DataFrames and apply the SoC-based percentile filter."""
     print("Processing target reactions...")
     if not target_reactions:
         empty = pd.DataFrame()
@@ -825,7 +739,7 @@ def _ecb_process_target_reactions(target_reactions, metabolite_scores, active_re
     return (df_all, final_df) if return_all else final_df
 
 
-# ---------- 3.9  ecBridge entry point ----------
+# ecBridge entry point
 
 def predict_ecbridge_targets(model,
                               exclude_met_file=None,
@@ -839,28 +753,9 @@ def predict_ecbridge_targets(model,
                               verbose=True,
                               output_dir=None,
                               naming=None):
-    """
-    ecBridge target prediction (topology-free version).
+    """Predict ecBridge targets using MOMA covariance and metabolite scores.
 
-    Parameters
-    ----------
-    model               : cobra.Model   Metabolic model (EC or plain).
-    exclude_met_file    : str           Path to metabolite exclusion list.
-    target_compound     : str           Compound ID; auto-parsed from model.id if None.
-    biomass_rxn         : str           Biomass reaction ID.
-    num_step            : int           MOMA sampling points.
-    bio_fraction        : float         Minimum biomass fraction during active-reaction search.
-    threshold           : float         Minimum absolute covariance significance.
-    top_score_percentage: float         Fraction of top-SoC reactions to include per type.
-    c_source_rxn        : str           Carbon-source uptake reaction ID.
-    verbose             : bool          Print progress.
-    output_dir          : str, optional If set, debug CSVs are written here.
-    naming              : str or NamingConvention, optional  'modelseed' or 'bigg'.
-
-    Returns
-    -------
-    (all_results, final_results) : tuple of pd.DataFrame
-    """
+    Apply exclusions and the top-SoC filter; return all and selected targets."""
     if verbose:
         print("=" * 60)
         print("ecBridge — topology-free version")
@@ -944,31 +839,14 @@ def predict_ecbridge_targets(model,
     return all_results, final_results
 
 
-# =============================================================================
-# SECTION 4 — ecFSEOF CORE ALGORITHM
-# =============================================================================
+# ecFSEOF CORE ALGORITHM
+
 
 class ecFSEOF:
-    """
-    Enzyme-Constrained FSEOF (EC-FSEOF) for metabolic engineering target identification.
+    """Predict gene targets from product-growth scans and enzyme-cost minimization.
 
-    Pipeline
-    --------
-    1. Calculate Pareto-optimal points (product vs biomass trade-off).
-    2. Batch optimisation with enzyme cost minimisation (minpool).
-    3. V-score calculation per reaction.
-    4. K-score aggregation per gene.
-    5. Gene classification (OE / KD / BOTH).
-    6. Filtering:
-       a. Remove genes without kcat_MW.
-       b. Remove essential genes (includes Bio_ genes) from KD pool.
-       c. Apply percentage filter.
-    7. Output clean gene-level DataFrame.
-
-    Output columns:
-        gene_id, gene_name, type, k_score,
-        v_score_sum, reaction_count, is_bidirectional, Target_reactions
-    """
+    Aggregate reaction V-scores into gene K-scores, classify OE/KD/BOTH,
+    and filter by enzyme data, essentiality, and score percentage."""
 
     def __init__(self,
                  model,
@@ -986,25 +864,23 @@ class ecFSEOF:
                  c_source_rxn='EX_cpd00027_e_reverse',
                  output_dir=None,
                  naming=None):
-        """
-        Parameters
+        """Parameters
         ----------
-        model                       : cobra.Model   Enzyme-constrained metabolic model.
-        product_rxn                 : str           Target product exchange reaction ID.
-        biomass_rxn                 : str, optional Auto-detected from objective if None.
-        fseof_steps                 : int           Pareto points (default 10).
-        top_percentage              : float         Fraction of top-ranked genes to retain (0–1).
-        separate_oe_kd_filtering    : bool          Separate percentage filters for OE/KD.
-        filtering_strategy          : str           'include_ties' or 'strict_rank'.
-        essential_genes_file        : str, optional Path to essential gene ID list.
-        auto_identify_essential     : bool          Run in-silico knockout (default True).
-        additional_essential_genes  : list, optional Extra essential gene IDs.
-        essential_genes_cache_dir   : str           Cache directory.
-        force_reidentify_essential  : bool          Ignore cache.
-        c_source_rxn                : str           Carbon-source reaction ID.
-        output_dir                  : str, optional Debug CSV output directory.
-        naming                      : str or NamingConvention, optional  'modelseed' or 'bigg'.
-        """
+        model : cobra.Model Enzyme-constrained metabolic model.
+        product_rxn : str Target product exchange reaction ID.
+        biomass_rxn : str, optional Auto-detected from objective if None.
+        fseof_steps : int Pareto points (default 10).
+        top_percentage : float Fraction of top-ranked genes to retain (0–1).
+        separate_oe_kd_filtering : bool Separate percentage filters for OE/KD.
+        filtering_strategy : str 'include_ties' or 'strict_rank'.
+        essential_genes_file : str, optional Path to essential gene ID list.
+        auto_identify_essential : bool Run in-silico knockout (default True).
+        additional_essential_genes : list, optional Extra essential gene IDs.
+        essential_genes_cache_dir : str Cache directory.
+        force_reidentify_essential : bool Ignore cache.
+        c_source_rxn : str Carbon-source reaction ID.
+        output_dir : str, optional Debug CSV output directory.
+        naming : str or NamingConvention, optional 'modelseed' or 'bigg'."""
         self.model         = model.copy()
         self.product_rxn   = product_rxn
         self.nc            = _get_nc(naming)
@@ -1052,17 +928,9 @@ class ecFSEOF:
         self._close_unwanted_reactions()
         self._print_init_info()
 
-    # ------------------------------------------------------------------ Public API
 
     def run(self):
-        """
-        Run the full EC-FSEOF pipeline.
-
-        Returns
-        -------
-        all_df   : pd.DataFrame  All candidates (before percentage filter).
-        final_df : pd.DataFrame  Genes that passed percentage filter.
-        """
+        """Run the full EC-FSEOF pipeline."""
         print("\n" + "=" * 60)
         print("EC-FSEOF Analysis")
         print("=" * 60)
@@ -1077,7 +945,6 @@ class ecFSEOF:
         final_df = self._build_output_dataframe(filtered=True)
         return all_df, final_df
 
-    # ------------------------------------------------------------------ Core EC-FSEOF
 
     def _ec_fseof(self):
         """Main EC-FSEOF routine."""
@@ -1240,7 +1107,6 @@ class ecFSEOF:
         print("Batch optimisation complete")
         return flux_matrix
 
-    # ------------------------------------------------------------------ Flux / Gene scoring
 
     def _process_flux_matrix(self, flux_matrix):
         """Convert raw flux_matrix array into a filtered DataFrame."""
@@ -1400,15 +1266,12 @@ class ecFSEOF:
             self.targets[k] = list(set(self.targets[k]))
         print(f"Classification: OE={len(self.targets['OE'])}, KD={len(self.targets['KD'])}")
 
-    # ------------------------------------------------------------------ Filtering
 
     def _apply_filtering(self):
-        """
-        Three-stage filter:
+        """Three-stage filter:
         1. Remove genes without kcat_MW.
         2. Remove essential genes from KD pool.
-        3. Apply percentage filter per OE/KD pool.
-        """
+        3. Apply percentage filter per OE/KD pool."""
         if self.gene_scores is None or self.gene_scores.empty:
             self.targets = {'OE': [], 'KD': []}
             return
@@ -1514,14 +1377,11 @@ class ecFSEOF:
                 self.targets['KD'].append(gid)
         print(f"After filtering: OE={len(self.targets['OE'])}, KD={len(self.targets['KD'])}")
 
-    # ------------------------------------------------------------------ Output DataFrame
 
     def _build_output_dataframe(self, filtered=True):
-        """
-        Build a clean gene-level DataFrame.
-        filtered=True  → genes that passed percentage filtering.
-        filtered=False → all genes that passed kcat_MW and essential-gene filters.
-        """
+        """Build a clean gene-level DataFrame.
+        filtered=True → genes that passed percentage filtering.
+        filtered=False → all genes that passed kcat_MW and essential-gene filters."""
         if self.gene_scores is None or self.gene_scores.empty:
             return pd.DataFrame(columns=[
                 'gene_id', 'gene_name', 'type', 'k_score',
@@ -1563,7 +1423,6 @@ class ecFSEOF:
             df = df.sort_values('k_score', ascending=False).reset_index(drop=True)
         return df
 
-    # ------------------------------------------------------------------ Essential genes
 
     def _load_or_identify_essential_genes(self, essential_genes_file, force_reidentify):
         essential_genes = []
@@ -1679,7 +1538,6 @@ class ecFSEOF:
             print(f"  Warning: cache read failed — {e}")
             return None
 
-    # ------------------------------------------------------------------ Misc helpers
 
     def _has_valid_kcat_mw(self, reaction):
         return (hasattr(reaction, 'kcat_MW') and
@@ -1775,36 +1633,24 @@ class ecFSEOF:
         print("=" * 60)
 
 
-# =============================================================================
-# SECTION 5 — SINGLE-TARGET VALIDATION (ecBridge / ecFSEOF compatible)
-# =============================================================================
+# SINGLE-TARGET VALIDATION (ecBridge / ecFSEOF compatible)
+
 
 def _st_detect_source(row):
-    """
-    Detect which tool produced this DataFrame row.
-    Returns 'ecBridge', 'ecFSEOF', 'ecBridge+ecFSEOF', or 'Unknown'.
+    """Read the source label from sources, then source_tag, then column names."""
 
-    Priority:
-      1. 'sources' column — set by _resolve_conflicts_in_merged() in ecfb mode.
-         This is the authoritative source label and must be checked FIRST.
-      2. 'source_tag' column — set by _merge_ecbridge_ecfseof() for raw merged rows.
-      3. Column-name heuristic — fallback for raw single-mode DataFrames:
-           'Regulation_type' present → ecBridge
-           'type' present            → ecFSEOF
-    """
-    # --- Priority 1: authoritative 'sources' column (ecfb resolved_df) ---
     if 'sources' in row and pd.notna(row.get('sources', None)):
         src_val = str(row['sources']).strip()
         if src_val and src_val.lower() != 'nan':
             return src_val
 
-    # --- Priority 2: 'source_tag' column (ecfb merged_df before resolving) ---
+
     if 'source_tag' in row and pd.notna(row.get('source_tag', None)):
         tag_val = str(row['source_tag']).strip()
         if tag_val and tag_val.lower() != 'nan':
             return tag_val
 
-    # --- Priority 3: column-name heuristic (raw single-mode DataFrames) ---
+
     if 'Regulation_type' in row and pd.notna(row.get('Regulation_type', None)):
         return 'ecBridge'
     if 'type' in row and pd.notna(row.get('type', None)):
@@ -1814,16 +1660,7 @@ def _st_detect_source(row):
 
 
 def _st_parse_regulation_type(row):
-    """
-    Parse the regulation direction from a DataFrame row.
-
-    Supports:
-      ecBridge — column 'Regulation_type', values 'Up' / 'Down'
-      ecFSEOF  — column 'type',            values 'OE' / 'KD' / 'BOTH'
-
-    Returns 'OE', 'KD', or 'BOTH'.
-    BOTH means conflict gene requiring bi-directional testing.
-    """
+    """Normalize Up/Down or OE/KD/BOTH to OE, KD, or BOTH."""
     if 'Regulation_type' in row and pd.notna(row['Regulation_type']):
         reg_raw = str(row['Regulation_type']).strip().lower()
         return 'OE' if 'up' in reg_raw else 'KD'
@@ -1838,20 +1675,10 @@ def _st_parse_regulation_type(row):
 
 
 def _st_map_reactions_to_genes(model, ecbridge_df):
-    """
-    Map reactions in *ecbridge_df* to genes and determine regulation direction.
+    """Map reactions to gene directions, reaction lists, input rows, and sources.
 
-    Conflict genes (type='BOTH' or contradictory rows) are labelled 'conflict'
-    and will receive bi-directional testing.
-
-    Returns
-    -------
-    gene_reg_map  : dict  gene_id → 'OE' | 'KD' | 'conflict'
-    gene_rxn_map  : dict  gene_id → [(rxn_id, reg_type), ...]
-    gene_row_map  : dict  gene_id → [row_dict, ...]
-    gene_source_str : dict gene_id → source label string
-    """
-    gene_reg_temp = {}   # gene_id → set of {'OE', 'KD'}
+    Mark contradictory directions as conflict for testing both OE and KD."""
+    gene_reg_temp = {}
     gene_rxn_map  = {}
     gene_row_map  = {}
     gene_source_map = {}
@@ -1876,7 +1703,7 @@ def _st_map_reactions_to_genes(model, ecbridge_df):
                 gene_row_map.setdefault(gid, []).append(row.to_dict())
                 gene_source_map.setdefault(gid, set()).add(src_label)
 
-                # BOTH injects both OE and KD so conflict detection fires correctly
+
                 if reg_type == 'BOTH':
                     gene_reg_temp.setdefault(gid, set()).update({'OE', 'KD'})
                 else:
@@ -1908,14 +1735,7 @@ def _st_get_original_kcat_values(model):
 
 
 def _st_calculate_baseline(model, biomass_rxn, product_rxn, cs_rxn):
-    """
-    Compute baseline production and yield under GROWTH_FRACTION * max_growth constraint.
-
-    Returns
-    -------
-    baseline_production : float
-    baseline_yield      : float
-    """
+    """Calculate baseline production and yield with the minimum growth constraint."""
     with model as m:
         m.objective = biomass_rxn
         max_growth  = m.slim_optimize()
@@ -1936,18 +1756,8 @@ def _st_calculate_baseline(model, biomass_rxn, product_rxn, cs_rxn):
 def _st_apply_gene_modification_and_test(model, gene_id, mod_type,
                                           original_kcat_values,
                                           biomass_rxn, product_rxn, cs_rxn):
-    """
-    Apply a single-gene OE or KD modification via enzyme-constraint reload and
-    evaluate the resulting production and yield with pFBA.
-
-    OE: kcat_MW *= OEF
-    KD: kcat_MW *= KDF
-
-    Returns
-    -------
-    production : float
-    yield_val  : float
-    """
+    """Scale gene-associated kcat_MW by OEF or KDF, reload constraints,
+    and return pFBA production and yield."""
     modified_kcat_data = {}
     temp_filename = None
 
@@ -2027,18 +1837,9 @@ def _st_apply_gene_modification_and_test(model, gene_id, mod_type,
 def _st_build_result_row(model, gene_id, mod_type, prod_imp, yield_imp,
                           gene_rxn_map, is_conflict, source,
                           oe_sources='', kd_sources=''):
-    """
-    Build a single result row compatible with ecFbridge_minpool output format.
+    """Build a test result with sources supporting the retained direction.
 
-    For conflict genes the *source* passed in should already be the direction-resolved
-    source string (i.e. the sources that actually predicted the winning direction).
-    The raw pre-test source union is preserved in 'predicted_by' for transparency.
-
-    Parameters
-    ----------
-    oe_sources : str   Sources that predicted OE for this gene (from resolved_df).
-    kd_sources : str   Sources that predicted KD for this gene (from resolved_df).
-    """
+    Preserve all original source labels in predicted_by."""
     try:
         gene      = model.genes.get_by_id(gene_id)
         gene_name = gene.name if (hasattr(gene, 'name') and gene.name) else ''
@@ -2051,7 +1852,7 @@ def _st_build_result_row(model, gene_id, mod_type, prod_imp, yield_imp,
         'gene_id':                gene_id,
         'gene_name':              gene_name,
         'type':                   mod_type,
-        # 'sources' = tools that correctly predicted the winning direction
+
         'sources':                source,
         'is_conflict':            is_conflict,
         'reactions':              reactions,
@@ -2061,36 +1862,18 @@ def _st_build_result_row(model, gene_id, mod_type, prod_imp, yield_imp,
 
 
 def _ecb_reactions_to_gene_df(model, ecb_df, naming=None):
-    """
-    Convert an ecBridge reaction-level DataFrame to a gene-level DataFrame
-    whose format mirrors the singletest_filtered output (without test metrics).
-
-    Input columns (ecb_df):
-        Target_reactions, Regulation_type, Conversion_type,
-        Source_metabolite, Destination_metabolite, SoC, Is_Active, ...
-
-    Output columns:
-        gene_id, gene_name, regulation_type, reactions,
-        SoC_max, SoC_mean, Conversion_type,
-        Source_metabolite, Destination_metabolite, Is_Active
-
-    regulation_type values:
-        'OE'       — all associated reactions say Up
-        'KD'       — all associated reactions say Down
-        'conflict' — same gene has both Up and Down reactions
-    """
+    """Aggregate ecBridge reaction targets into gene targets; mark mixed directions as conflict."""
     if ecb_df is None or ecb_df.empty:
         return pd.DataFrame()
 
-    # Only apply gene mapping when the DataFrame is reaction-level
-    # (ecBridge raw has 'Regulation_type'; gene-level frames have 'gene_id')
+
     if 'gene_id' in ecb_df.columns:
         return ecb_df.copy()
 
-    gene_data = {}  # gene_id → accumulated info dict
+    gene_data = {}
 
     for _, row in ecb_df.iterrows():
-        # Collect all reaction IDs for this row (including isozymes)
+
         rxn_field = str(row.get('All_isozymes', '') or row.get('Target_reactions', ''))
         rxn_ids   = [r.strip() for r in rxn_field.split(';') if r.strip()]
         if not rxn_ids:
@@ -2176,48 +1959,10 @@ def run_ecbridge_single_target_test(model,
                                      c_source_rxn=None,
                                      output_prefix=None,
                                      naming=None):
-    """
-    Single-target validation for ecBridge, ecFSEOF, or merged ecFB outputs.
+    """Validate gene targets by OE/KD testing and improvement filtering.
 
-    For each candidate gene the function applies OE or KD modifications,
-    re-evaluates production and yield improvement, and filters results.
-    Conflict genes (BOTH / contradictory rows) receive bi-directional testing.
-
-    Source annotation rules
-    -----------------------
-    The 'sources' column in the output reflects which tool(s) correctly predicted
-    the final retained direction:
-
-      Non-conflict gene (single direction from the start):
-          sources = the tool(s) that originally predicted that gene
-                    e.g. 'ecBridge', 'ecFSEOF', or 'ecBridge+ecFSEOF'
-
-      Conflict gene (OE vs KD disagreement, bi-directional test performed):
-          After the test the winning direction is determined.
-          sources = tool(s) that predicted the WINNING direction
-                    e.g. if ecBridge said KD and ecFSEOF said OE and OE wins
-                         → sources = 'ecFSEOF'
-          If the same tool predicted both directions (ecFSEOF BOTH), the tool
-          is credited for whichever direction won.
-
-    Parameters
-    ----------
-    model                : cobra.Model or str  Metabolic model.
-    ecbridge_raw_df      : pd.DataFrame        all_results (ecBridge), all_df (ecFSEOF),
-                                               or resolved_df (ecFB merged).
-    product_id           : str                 Target compound metabolite ID.
-    biomass_rxn          : str                 Biomass reaction ID.
-    output_dir           : str                 Output directory.
-    improvement_threshold: float               Min improvement % to retain (default 0.1).
-    exclusion_threshold  : float               KD exclusion threshold % (default -3.0).
-    c_source_rxn         : str, optional       Carbon-source reaction ID.
-    output_prefix        : str, optional       File name prefix (defaults to product_id).
-
-    Returns
-    -------
-    raw_path      : str  Path to raw output CSV.
-    filtered_path : str  Path to single-target-filtered CSV.
-    """
+    Test conflict genes in both directions. The sources column records tools
+    supporting the retained direction; predicted_by preserves original sources."""
     print("\n" + "=" * 65)
     print("Single-Target Validation")
     print("=" * 65)
@@ -2236,14 +1981,14 @@ def run_ecbridge_single_target_test(model,
 
     raw_path = os.path.join(output_dir, f'{prefix}_raw_ecbridge.csv')
 
-    # Step A: Baseline
+
     print("\n[Step A] Computing baseline production ...")
     baseline_prod, baseline_yield = _st_calculate_baseline(
         model, biomass_rxn, product_rxn, cs_rxn
     )
     print(f"  Baseline production = {baseline_prod:.6f},  yield = {baseline_yield:.6f}")
 
-    # Step B: Reaction → gene mapping
+
     print("\n[Step B] Mapping reactions to genes ...")
     gene_reg_map, gene_rxn_map, gene_row_map, gene_source_str = _st_map_reactions_to_genes(
         model, ecbridge_raw_df
@@ -2253,9 +1998,7 @@ def run_ecbridge_single_target_test(model,
     conflict_genes = [g for g, r in gene_reg_map.items() if r == 'conflict']
     print(f"  Conflict genes (bi-directional testing): {len(conflict_genes)}")
 
-    # Output 1: save raw as gene-level DataFrame (mirrors filtered format, without test metrics).
-    # For ecBridge mode this converts reaction→gene first via _ecb_reactions_to_gene_df;
-    # for ecFSEOF / ecFB modes the input is already gene-level and is saved as-is.
+
     raw_gene_df = _ecb_reactions_to_gene_df(model, ecbridge_raw_df, naming=naming)
     raw_gene_df.to_csv(raw_path, index=False)
     print(f"\n[Output 1] Raw gene-level results saved: {raw_path}  ({len(raw_gene_df)} genes)")
@@ -2264,23 +2007,22 @@ def run_ecbridge_single_target_test(model,
     for src_label, cnt in sorted(src_counter.items()):
         print(f"  Source [{src_label}]: {cnt} genes")
 
-    # Build per-direction source lookup from the resolved_df columns if available
-    # (these columns are only present when called from ecfb mode)
+
     gene_oe_src = {}
     gene_kd_src = {}
     if 'oe_sources' in ecbridge_raw_df.columns and 'kd_sources' in ecbridge_raw_df.columns:
-        # ecfb mode: resolved_df is gene-level, gene_id column exists
+
         if 'gene_id' in ecbridge_raw_df.columns:
             for _, row in ecbridge_raw_df.iterrows():
                 gid = str(row['gene_id'])
                 gene_oe_src[gid] = str(row.get('oe_sources', ''))
                 gene_kd_src[gid] = str(row.get('kd_sources', ''))
 
-    # Step C: Collect original kcat values
+
     original_kcat = _st_get_original_kcat_values(model)
     print(f"  Collected kcat_MW for {len(original_kcat)} reactions")
 
-    # Step D: Gene-by-gene single-target test
+
     print("\n[Step D] Per-gene single-target testing ...")
     results        = []
     excluded_genes = []
@@ -2289,8 +2031,8 @@ def run_ecbridge_single_target_test(model,
     for gid, reg_type in gene_reg_map.items():
 
         if reg_type == 'conflict':
-            # Bi-directional test — keep the best direction, then credit the
-            # source(s) that actually predicted that direction.
+
+
             print(f"\n  [Conflict] {gid}, testing OE and KD ...")
             oe_prod, oe_yield = _st_apply_gene_modification_and_test(
                 model, gid, 'OE', original_kcat, biomass_rxn, product_rxn, cs_rxn
@@ -2322,15 +2064,15 @@ def run_ecbridge_single_target_test(model,
                     best_type, best_pi, best_yi = 'KD', kd_pi, kd_yi
 
             if best_pi >= improvement_threshold or best_yi >= improvement_threshold:
-                # Resolve source: credit tool(s) that predicted the winning direction
+
                 if gene_oe_src or gene_kd_src:
-                    # ecfb mode — use per-direction source map from resolved_df
+
                     if best_type == 'OE':
                         resolved_source = gene_oe_src.get(gid, '') or gene_source_str.get(gid, 'Unknown')
                     else:
                         resolved_source = gene_kd_src.get(gid, '') or gene_source_str.get(gid, 'Unknown')
                 else:
-                    # ecbridge/ecfseof single-mode fallback
+
                     resolved_source = gene_source_str.get(gid, 'Unknown')
 
                 print(f"  ✓ Retained {gid} ({best_type}) "
@@ -2349,7 +2091,7 @@ def run_ecbridge_single_target_test(model,
                       f"(prod {best_pi:.3f}%, yield {best_yi:.3f}%)")
 
         else:
-            # Uni-directional test
+
             prod, yld   = _st_apply_gene_modification_and_test(
                 model, gid, reg_type, original_kcat, biomass_rxn, product_rxn, cs_rxn
             )
@@ -2365,18 +2107,16 @@ def run_ecbridge_single_target_test(model,
                 continue
 
             if prod_imp >= improvement_threshold or yield_imp >= improvement_threshold:
-                # Resolve source for non-conflict genes:
-                # In ecfb mode, use the per-direction source from resolved_df
-                # which is authoritative. Only fall back to gene_source_str
-                # (from _st_detect_source) for single-mode runs.
+
+
                 if gene_oe_src or gene_kd_src:
-                    # ecfb mode — pick the source for the tested direction
+
                     if reg_type == 'OE':
                         src = gene_oe_src.get(gid, '') or gene_source_str.get(gid, 'Unknown')
                     else:
                         src = gene_kd_src.get(gid, '') or gene_source_str.get(gid, 'Unknown')
                 else:
-                    # ecbridge / ecfseof single-mode
+
                     src = gene_source_str.get(gid, 'Unknown')
                 print(f"  ✓ Retained {gid} ({reg_type}) "
                       f"[source: {src}]: "
@@ -2392,7 +2132,7 @@ def run_ecbridge_single_target_test(model,
                       f"prod {prod_imp:.3f}%, yield {yield_imp:.3f}% "
                       f"(below improvement threshold {improvement_threshold}%)")
 
-    # Output 2: single-target filtered results
+
     filtered_path = os.path.join(output_dir, f'{prefix}_singletest_filtered.csv')
     col_order = [
         'gene_id', 'gene_name', 'type', 'sources',
@@ -2431,40 +2171,14 @@ def run_ecbridge_single_target_test(model,
     return raw_path, filtered_path
 
 
-# =============================================================================
-# SECTION 6 — ecFB MERGER
-#   Merge ecBridge + ecFSEOF predictions, resolve directional conflicts,
-#   then perform unified single-target validation on the combined target list.
-# =============================================================================
+# ecFB MERGER
+
 
 def _merge_ecbridge_ecfseof(ecb_df, efs_df):
-    """
-    Merge ecBridge (reaction-level) and ecFSEOF (gene-level) target DataFrames.
-
-    Merging strategy
-    ----------------
-    1. Normalise both frames to a common schema:
-         gene_id | Target_reactions | Regulation_type | source_tag
-    2. Concatenate all rows.
-    3. For each gene, collect the set of regulation directions from both tools.
-       - If a gene appears with only OE entries          → type = 'OE'
-       - If a gene appears with only KD entries          → type = 'KD'
-       - If a gene appears with contradictory OE and KD  → type = 'BOTH'
-         (these are the conflict genes that need bi-directional single-target testing)
-    4. Return the merged DataFrame where each row represents one unique gene.
-
-    Parameters
-    ----------
-    ecb_df : pd.DataFrame   All-candidates output from predict_ecbridge_targets().
-    efs_df : pd.DataFrame   All-candidates output from ecFSEOF.run().
-
-    Returns
-    -------
-    merged_df : pd.DataFrame  Columns: gene_id, Target_reactions, type, sources, is_conflict
-    """
+    """Normalize ecBridge and ecFSEOF targets into a shared schema and concatenate them."""
     rows = []
 
-    # -- ecBridge rows: Regulation_type = 'Up' (OE) / 'Down' (KD) --
+
     for _, row in ecb_df.iterrows():
         reg = 'OE' if str(row.get('Regulation_type', '')).strip().lower() == 'up' else 'KD'
         rows.append({
@@ -2475,7 +2189,7 @@ def _merge_ecbridge_ecfseof(ecb_df, efs_df):
             'SoC':              float(row.get('SoC', 0)),
         })
 
-    # -- ecFSEOF rows: type = 'OE' / 'KD' / 'BOTH' --
+
     for _, row in efs_df.iterrows():
         ftype = str(row.get('type', '')).strip().upper()
         rows.append({
@@ -2492,31 +2206,14 @@ def _merge_ecbridge_ecfseof(ecb_df, efs_df):
 
 
 def _resolve_conflicts_in_merged(model, merged_df):
-    """
-    Walk through the merged target DataFrame and identify genes whose
-    regulation direction conflicts between the two tools (or within ecFSEOF BOTH genes).
+    """Aggregate targets by gene and record OE/KD directions and their sources.
 
-    For each gene:
-      - Collect all unique directions from merged rows
-      - If directions ⊆ {OE}  → assign 'OE'
-      - If directions ⊆ {KD}  → assign 'KD'
-      - Otherwise              → assign 'BOTH' (conflict → bi-directional test)
-
-    Per-direction source tracking
-    -----------------------------
-    For conflict genes we record which tool(s) predicted OE and which predicted KD
-    separately (oe_sources / kd_sources columns).  After single-target validation
-    the winning direction is used to select the correct source label.
-
-    Returns a new DataFrame where each row is a unique gene with columns:
-      gene_id, Target_reactions, type, sources, is_conflict,
-      oe_sources, kd_sources
-    """
-    gene_directions  = {}   # gene_id → set of {'OE', 'KD'}
-    gene_reactions   = {}   # gene_id → set of reaction IDs
-    gene_sources     = {}   # gene_id → set of ALL source tags (union)
-    gene_oe_sources  = {}   # gene_id → set of source tags that predicted OE
-    gene_kd_sources  = {}   # gene_id → set of source tags that predicted KD
+    Mark contradictory directions as BOTH for later single-target testing."""
+    gene_directions  = {}
+    gene_reactions   = {}
+    gene_sources     = {}
+    gene_oe_sources  = {}
+    gene_kd_sources  = {}
 
     for _, row in merged_df.iterrows():
         rxn_field = str(row.get('Target_reactions', ''))
@@ -2525,12 +2222,12 @@ def _resolve_conflicts_in_merged(model, merged_df):
         src       = str(row.get('source_tag', 'Unknown'))
 
         for rxn_id in rxn_ids:
-            # Expand to gene level
+
             try:
                 rxn   = model.reactions.get_by_id(rxn_id)
                 genes = [g.id for g in rxn.genes]
             except KeyError:
-                # If no model lookup possible, treat rxn_id as gene-level proxy
+
                 genes = [rxn_id]
 
             for gid in genes:
@@ -2538,7 +2235,7 @@ def _resolve_conflicts_in_merged(model, merged_df):
                 gene_sources.setdefault(gid, set()).add(src)
 
                 if reg == 'BOTH':
-                    # ecFSEOF internal conflict: this source predicts both directions
+
                     gene_directions.setdefault(gid, set()).update({'OE', 'KD'})
                     gene_oe_sources.setdefault(gid, set()).add(src)
                     gene_kd_sources.setdefault(gid, set()).add(src)
@@ -2561,7 +2258,7 @@ def _resolve_conflicts_in_merged(model, merged_df):
             final_type  = 'BOTH'
             is_conflict = True
 
-        # Build the pre-test 'sources' label (all tools that nominated this gene)
+
         all_srcs  = gene_sources.get(gid, {'Unknown'})
         oe_srcs   = gene_oe_sources.get(gid, set())
         kd_srcs   = gene_kd_sources.get(gid, set())
@@ -2572,7 +2269,7 @@ def _resolve_conflicts_in_merged(model, merged_df):
             'type':             final_type,
             'sources':          '+'.join(sorted(all_srcs)),
             'is_conflict':      is_conflict,
-            # Per-direction source columns used after single-target test
+
             'oe_sources':       '+'.join(sorted(oe_srcs))  if oe_srcs  else '',
             'kd_sources':       '+'.join(sorted(kd_srcs))  if kd_srcs  else '',
         })
@@ -2584,76 +2281,40 @@ def _resolve_conflicts_in_merged(model, merged_df):
     return resolved_df
 
 
-# =============================================================================
-# SECTION 7 — MAIN ENTRY POINT
-# =============================================================================
+# MAIN ENTRY POINT
+
 
 def run_prediction(mode,
                    model,
                    product_id,
                    biomass_rxn,
                    output_dir='./results',
-                   # --- ecBridge parameters ---
+
                    ecb_num_step=20,
                    ecb_bio_fraction=0.1,
                    ecb_threshold=0.01,
                    ecb_top_score_percentage=1,
                    ecb_exclude_met_file=None,
-                   # --- ecFSEOF parameters ---
+
                    efs_fseof_steps=10,
                    efs_top_percentage=1.0,
                    efs_auto_identify_essential=True,
                    efs_essential_genes_file=None,
                    efs_additional_essential_genes=None,
                    efs_force_reidentify=False,
-                   # --- Single-target test parameters ---
+
                    st_improvement_threshold=0.1,
                    st_exclusion_threshold=-5.0,
-                   # --- Shared parameters ---
+
                    c_source_rxn='EX_cpd00027_e_reverse',
                    debug_output=False,
                    naming='modelseed'):
-    """
-    Unified prediction entry point.
+    """Run ecbridge, ecfseof, or combined ecfb target prediction.
 
-    Parameters
-    ----------
-    mode         : str   'ecbridge', 'ecfseof', or 'ecfb'
-    model        : cobra.Model or str   Metabolic model (EC or plain).
-    product_id   : str   Target compound metabolite ID (e.g. 'cpd00103').
-    biomass_rxn  : str   Biomass reaction ID.
-    output_dir   : str   Root output directory.  Sub-folders are auto-created:
-                           ecbridge/   ecfseof/   ecfb/
-    ecb_*        : ecBridge-specific keyword arguments.
-    efs_*        : ecFSEOF-specific keyword arguments.
-    st_*         : Single-target validation keyword arguments.
-    c_source_rxn : str   Carbon-source uptake reaction ID.
-    debug_output : bool  Save intermediate debug CSVs.
-
-    Output structure
-    ----------------
-    mode='ecbridge':
-        <output_dir>/ecbridge/<product_id>_raw_ecbridge.csv
-        <output_dir>/ecbridge/<product_id>_singletest_filtered.csv
-
-    mode='ecfseof':
-        <output_dir>/ecfseof/<product_id>_raw_ecfseof.csv
-        <output_dir>/ecfseof/<product_id>_singletest_filtered.csv
-
-    mode='ecfb':
-        <output_dir>/ecbridge/<product_id>_raw_ecbridge.csv
-        <output_dir>/ecfseof/<product_id>_raw_ecfseof.csv
-        <output_dir>/ecfb/<product_id>_merged_targets.csv
-        <output_dir>/ecfb/<product_id>_singletest_filtered.csv
-
-    Returns
-    -------
-    dict with keys depending on mode:
-        'ecb_raw', 'ecb_filtered'   (ecbridge mode)
-        'efs_raw', 'efs_filtered'   (ecfseof mode)
-        all of the above +
-        'merged', 'ecfb_filtered'   (ecfb mode)
-    """
+    Accept a model or JSON path. Use ecb_*, efs_*, and st_* for algorithm
+    and validation options. Single modes write to their own subdirectories;
+    ecFB writes merged input and validated targets directly to output_dir.
+    Return a dictionary of output paths."""
     mode = mode.lower().strip()
     if mode not in ('ecbridge', 'ecfseof', 'ecfb'):
         raise ValueError(f"Unknown mode '{mode}'. Choose from: ecbridge, ecfseof, ecfb")
@@ -2662,10 +2323,10 @@ def run_prediction(mode,
     model = _load_model(model)
 
     product_rxn    = nc.make_exchange_rxn(product_id)
-    # ecbridge / ecfseof modes keep their own sub-folders for organisation
+
     ecb_dir        = os.path.join(output_dir, 'ecbridge')
     efs_dir        = os.path.join(output_dir, 'ecfseof')
-    # ecfb mode: all final outputs go directly into output_dir (flat)
+
     ecfb_dir       = output_dir
     debug_ecb_dir  = os.path.join(output_dir, 'debug', 'ecbridge') if debug_output else None
     debug_efs_dir  = os.path.join(output_dir, 'debug', 'ecfseof')  if debug_output else None
@@ -2674,14 +2335,12 @@ def run_prediction(mode,
         os.makedirs(ecb_dir, exist_ok=True)
     elif mode == 'ecfseof':
         os.makedirs(efs_dir, exist_ok=True)
-    else:  # ecfb — only need the flat output_dir
+    else:
         os.makedirs(ecfb_dir, exist_ok=True)
 
     results = {}
 
-    # -------------------------------------------------------------------------
-    # MODE: ecbridge
-    # -------------------------------------------------------------------------
+
     if mode in ('ecbridge', 'ecfb'):
         print("\n" + "#" * 70)
         print("# Running ecBridge")
@@ -2703,7 +2362,7 @@ def run_prediction(mode,
         )
 
         if mode == 'ecbridge':
-            # Save raw predictions and run single-target test
+
             ecb_raw_path, ecb_filt_path = run_ecbridge_single_target_test(
                 model                 = model,
                 ecbridge_raw_df       = ecb_all,
@@ -2729,12 +2388,10 @@ def run_prediction(mode,
             print("=" * 70)
             return results
 
-        # Store for ecfb merge
+
         results['_ecb_all'] = ecb_all
 
-    # -------------------------------------------------------------------------
-    # MODE: ecfseof
-    # -------------------------------------------------------------------------
+
     if mode in ('ecfseof', 'ecfb'):
         print("\n" + "#" * 70)
         print("# Running ecFSEOF")
@@ -2791,13 +2448,10 @@ def run_prediction(mode,
             print("=" * 70)
             return results
 
-        # Store for ecfb merge
+
         results['_efs_all'] = efs_all
 
-    # -------------------------------------------------------------------------
-    # MODE: ecfb  (merge + unified single-target validation)
-    # All outputs go directly into output_dir — no ecbridge/ or ecfseof/ sub-folders.
-    # -------------------------------------------------------------------------
+
     if mode == 'ecfb':
         print("\n" + "#" * 70)
         print("# ecFB: Merging ecBridge + ecFSEOF predictions")
@@ -2806,24 +2460,24 @@ def run_prediction(mode,
         ecb_all = results.pop('_ecb_all')
         efs_all = results.pop('_efs_all')
 
-        # Merge both target lists
+
         print("\n[ecFB] Step 1: Normalising and merging target lists ...")
         merged_schema = _merge_ecbridge_ecfseof(ecb_all, efs_all)
 
-        # Resolve directional conflicts at gene level (now tracks per-direction sources)
+
         print("\n[ecFB] Step 2: Resolving directional conflicts at gene level ...")
         resolved_df = _resolve_conflicts_in_merged(model, merged_schema)
 
         print(f"\n[ecFB] Merged gene pool: {len(resolved_df)} unique genes")
 
-        # Unified single-target validation — outputs land directly in output_dir
+
         print("\n[ecFB] Step 3: Unified single-target validation ...")
         _, ecfb_filt_path = run_ecbridge_single_target_test(
             model                 = model,
             ecbridge_raw_df       = resolved_df,
             product_id            = product_id,
             biomass_rxn           = biomass_rxn,
-            output_dir            = ecfb_dir,          # flat — no sub-folder
+            output_dir            = ecfb_dir,
             improvement_threshold = st_improvement_threshold,
             exclusion_threshold   = st_exclusion_threshold,
             c_source_rxn          = c_source_rxn,
@@ -2831,8 +2485,7 @@ def run_prediction(mode,
             naming                = nc,
         )
 
-        # The auto-generated raw file (merged resolved_df) is kept as-is;
-        # rename it to a more descriptive name.
+
         auto_raw  = os.path.join(ecfb_dir, f'{product_id}_raw_ecbridge.csv')
         final_raw = os.path.join(ecfb_dir, f'{product_id}_ecfb_merged_input.csv')
         if os.path.exists(auto_raw):
@@ -2852,9 +2505,8 @@ def run_prediction(mode,
         return results
 
 
-# =============================================================================
-# SECTION 8 — COMMAND-LINE ENTRY POINT
-# =============================================================================
+# COMMAND-LINE ENTRY POINT
+
 
 def main():
     import argparse
@@ -2885,14 +2537,14 @@ def main():
     parser.add_argument('--c-source-rxn', default='EX_cpd00027_e_reverse',
                         help='Carbon-source uptake reaction ID')
 
-    # ecBridge parameters
+
     parser.add_argument('--ecb-num-step',             type=int,   default=20)
     parser.add_argument('--ecb-bio-fraction',         type=float, default=0.1)
     parser.add_argument('--ecb-threshold',            type=float, default=0.01)
     parser.add_argument('--ecb-top-score-percentage', type=float, default=1)
     parser.add_argument('--ecb-exclude-met-file',     default=None)
 
-    # ecFSEOF parameters
+
     parser.add_argument('--efs-fseof-steps',            type=int,   default=10)
     parser.add_argument('--efs-top-percentage',         type=float, default=1.0)
     parser.add_argument('--efs-no-auto-essential',      action='store_true',
@@ -2900,7 +2552,7 @@ def main():
     parser.add_argument('--efs-essential-genes-file',   default=None)
     parser.add_argument('--efs-force-reidentify',       action='store_true')
 
-    # Single-target test parameters
+
     parser.add_argument('--st-improvement-threshold', type=float, default=0.1,
                         help='Minimum improvement %% to retain a gene (default 0.1)')
     parser.add_argument('--st-exclusion-threshold',   type=float, default=-5.0,

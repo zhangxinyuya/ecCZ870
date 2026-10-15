@@ -1,21 +1,10 @@
-#!/usr/bin/env python3
-"""
-Generate iPath3 input from filtered CSV + COBRA JSON model.
+#!/usr/bin/env python
+# Author: Zhang xinyu
+# Date: 2026-10-15
+"""Generate iPath3 selections from filtered gene targets and model annotations.
 
-Flow:
-  filtered CSV → gene_id + type(OE/KD) + sources
-      ↓
-  model JSON → find all reactions containing each gene
-      ↓ each reaction's annotation:
-      ├─ has kegg.reaction → validate via KEGG API
-      │     ├─ valid      → use R##### directly (most precise)
-      │     └─ obsolete   → fallback to ec-code → check obsolete → E#####
-      └─ no kegg.reaction → use ec-code → check obsolete via KEGG API → E#####
-      ↓
-  iPath3 format:  ID  COLOR  WIDTH
-      color: OE=#ff0000 (red), KD=#0000ff (blue)
-      width: ecBridge+ecFSEOF=W30, ecBridge_only=W20, ecFSEOF_only=W15
-"""
+Prefer KEGG reaction IDs; fall back to EC codes. Online checks are optional.
+Output: ID COLOR WIDTH. OE is red, KD blue, and conflicts orange."""
 
 import argparse
 import json
@@ -29,17 +18,14 @@ from collections import defaultdict
 import pandas as pd
 
 
-# ---------------------------------------------------------------------------
-# Step 1: Read filtered CSV
-# ---------------------------------------------------------------------------
 def read_filtered_csv(path: str) -> pd.DataFrame:
-    """Read filtered CSV, return DataFrame with gene_id, type, sources."""
+    """Read gene targets and retain OE/KD rows."""
     df = pd.read_csv(path)
     required = {"gene_id", "type"}
     missing = required - set(df.columns)
     if missing:
         sys.exit(f"[ERROR] Missing columns in CSV: {missing}")
-    # Keep only OE / KD rows
+
     df = df[df["type"].isin(["OE", "KD"])].copy()
     df["type"] = df["type"].str.strip().str.upper()
     print(f"[Step 1] Loaded {len(df)} targets from {path}")
@@ -47,15 +33,8 @@ def read_filtered_csv(path: str) -> pd.DataFrame:
     return df
 
 
-# ---------------------------------------------------------------------------
-# Step 2: Build gene → reactions mapping from model JSON
-# ---------------------------------------------------------------------------
 def build_gene_reaction_map(model_path: str):
-    """
-    Returns:
-        gene_rxn_map: {gene_id: [rxn_dict, ...]}
-        Each rxn_dict has keys: id, ec_codes (list), kegg_reactions (list)
-    """
+    """Map genes to reaction IDs, EC codes, and KEGG reaction annotations."""
     with open(model_path, "r") as f:
         model = json.load(f)
 
@@ -66,22 +45,22 @@ def build_gene_reaction_map(model_path: str):
         rxn_id = rxn.get("id", "")
         annotation = rxn.get("annotation", {})
 
-        # Extract ec-code(s)
+
         ec_raw = annotation.get("ec-code", [])
         if isinstance(ec_raw, str):
             ec_raw = [ec_raw]
         ec_codes = [e.strip() for e in ec_raw if e.strip()]
 
-        # Extract kegg.reaction(s)
+
         kr_raw = annotation.get("kegg.reaction", [])
         if isinstance(kr_raw, str):
             kr_raw = [kr_raw]
         kegg_reactions = [r.strip() for r in kr_raw if r.strip()]
 
-        # Parse gene_reaction_rule → extract gene IDs
+
         rule = rxn.get("gene_reaction_rule", "")
         genes_in_rule = set(re.findall(r"[A-Za-z0-9_]+", rule)) if rule else set()
-        # Filter out boolean keywords
+
         genes_in_rule -= {"and", "or", "AND", "OR", "And", "Or"}
 
         rxn_info = {
@@ -98,11 +77,8 @@ def build_gene_reaction_map(model_path: str):
     return gene_rxn_map
 
 
-# ---------------------------------------------------------------------------
-# Step 3: KEGG API — shared fetch utility
-# ---------------------------------------------------------------------------
 def _kegg_get(url: str, retries: int = 3) -> str | None:
-    """Fetch KEGG REST API with retry and rate limiting."""
+    """Fetch a KEGG entry with retries; return None on failure."""
     for attempt in range(retries):
         try:
             req = urllib.request.Request(url)
@@ -120,67 +96,47 @@ def _kegg_get(url: str, retries: int = 3) -> str | None:
     return None
 
 
-# ---------------------------------------------------------------------------
-# Step 3a: KEGG API — validate KEGG Reaction IDs
-# ---------------------------------------------------------------------------
-_kr_cache: dict[str, str | None] = {}  # R##### → R##### (valid) or None (obsolete)
+_kr_cache: dict[str, str | None] = {}
 
 
 def resolve_kegg_reaction(rid: str) -> str | None:
-    """
-    Validate a KEGG Reaction ID via KEGG API.
-
-    KEGG reactions are generally stable and do not get "transferred" the way
-    EC numbers do, but entries can be removed/obsoleted.  A 404 response from
-    the REST endpoint means the entry no longer exists; any other successful
-    response means the ID is still valid.
-
-    Returns:
-        rid   – the same ID if it is valid
-        None  – if the entry is not found / obsolete
-    """
+    """Return a KEGG reaction ID with an ENTRY response, or None."""
     if rid in _kr_cache:
         return _kr_cache[rid]
 
     body = _kegg_get(f"https://rest.kegg.jp/get/{rid}")
     if body is None:
-        # 404 or unrecoverable error → treat as obsolete
+
         print(f"         KEGG Reaction {rid} → Not found / obsolete, will fallback to EC")
         _kr_cache[rid] = None
         return None
 
-    # Entry exists — confirm it looks like a reaction entry (starts with ENTRY)
+
     if body.strip().startswith("ENTRY"):
         _kr_cache[rid] = rid
         return rid
 
-    # Unexpected body format → conservative: treat as invalid
+
     print(f"         KEGG Reaction {rid} → Unexpected response format, will fallback to EC")
     _kr_cache[rid] = None
     return None
 
 
-# ---------------------------------------------------------------------------
-# Step 3b: KEGG API — check obsolete EC codes
-# ---------------------------------------------------------------------------
-_ec_cache: dict[str, str | None] = {}  # ec_code → resolved ec_code or None
+_ec_cache: dict[str, str | None] = {}
 
 
 def resolve_ec(ec_code: str) -> str | None:
-    """
-    Check if an EC code is obsolete via KEGG API.
-    Returns the current valid EC code, or None if truly obsolete.
-    """
+    """Resolve EC transfers and cache the resulting code or None."""
     if ec_code in _ec_cache:
         return _ec_cache[ec_code]
 
     body = _kegg_get(f"https://rest.kegg.jp/get/ec:{ec_code}")
     if body is None:
-        # Not found at all
+
         _ec_cache[ec_code] = None
         return None
 
-    # Check for "Transferred to" or "Obsolete"
+
     for line in body.splitlines():
         if "Transferred to" in line:
             m = re.search(r"(\d+\.\d+\.\d+\.\d+)", line)
@@ -194,26 +150,20 @@ def resolve_ec(ec_code: str) -> str | None:
             _ec_cache[ec_code] = None
             return None
 
-    # Valid EC
+
     _ec_cache[ec_code] = ec_code
     return ec_code
 
 
-# ---------------------------------------------------------------------------
-# Step 4: Map genes → iPath3 IDs
-# ---------------------------------------------------------------------------
 def _try_ec_fallback(rxn: dict, gene: str, gtype: str, sources: str,
                      check_ec_online: bool) -> list[dict]:
-    """
-    Helper: attempt to produce EC-based iPath3 entries for a single reaction.
-    Called when kegg.reaction entries are all absent or obsolete.
-    """
+    """Create EC-based entries, optionally checking codes online."""
     entries = []
     for ec in rxn["ec_codes"]:
         if check_ec_online:
             resolved = resolve_ec(ec)
         else:
-            resolved = ec  # skip API check
+            resolved = ec
         if resolved:
             entries.append({
                 "ipath_id": f"E{resolved}",
@@ -228,17 +178,9 @@ def _try_ec_fallback(rxn: dict, gene: str, gtype: str, sources: str,
 
 def map_genes_to_ipath_ids(df: pd.DataFrame, gene_rxn_map: dict,
                            check_ec_online: bool = True):
-    """
-    For each gene in df, find all reactions in the model, then:
-      - priority 1: kegg.reaction → validate via KEGG API
-            valid   → use R##### directly
-            obsolete → fallback to ec-code for THIS reaction
-      - priority 2: ec-code → resolve obsolete → E#.#.#.#
-            (used when no kegg.reaction exists, OR all kegg.reactions obsolete)
+    """Map genes using KEGG reaction IDs, falling back to EC codes per reaction.
 
-    Returns list of dicts:
-        {ipath_id, gene_id, type, sources, origin, rxn_id}
-    """
+    Return mapped entries and unmapped genes."""
     results = []
     unmapped_genes = []
 
@@ -256,13 +198,11 @@ def map_genes_to_ipath_ids(df: pd.DataFrame, gene_rxn_map: dict,
         for rxn in rxns:
             rxn_has_id = False
 
-            # ----------------------------------------------------------------
-            # Priority 1: kegg.reaction — validate each ID, fallback if obsolete
-            # ----------------------------------------------------------------
+
             if rxn["kegg_reactions"]:
                 valid_kr_found = False
                 for kr in rxn["kegg_reactions"]:
-                    # Normalize: ensure R##### format
+
                     rid = kr.strip()
                     if not rid.startswith("R"):
                         rid = "R" + rid
@@ -270,10 +210,10 @@ def map_genes_to_ipath_ids(df: pd.DataFrame, gene_rxn_map: dict,
                     if check_ec_online:
                         resolved_rid = resolve_kegg_reaction(rid)
                     else:
-                        resolved_rid = rid  # skip API check
+                        resolved_rid = rid
 
                     if resolved_rid:
-                        # Valid KEGG Reaction ID → use it
+
                         results.append({
                             "ipath_id": resolved_rid,
                             "gene_id": gene,
@@ -284,11 +224,8 @@ def map_genes_to_ipath_ids(df: pd.DataFrame, gene_rxn_map: dict,
                         })
                         rxn_has_id = True
                         valid_kr_found = True
-                    # If resolved_rid is None, this particular R##### is obsolete;
-                    # keep looping — maybe other R##### entries for this reaction are valid.
 
-                # All kegg.reaction IDs for this reaction are obsolete →
-                # fall back to ec-code for this reaction
+
                 if not valid_kr_found:
                     print(f"         Reaction {rxn['id']}: all KEGG Reaction IDs obsolete, "
                           f"falling back to EC code")
@@ -299,9 +236,7 @@ def map_genes_to_ipath_ids(df: pd.DataFrame, gene_rxn_map: dict,
                         results.extend(fallback_entries)
                         rxn_has_id = True
 
-            # ----------------------------------------------------------------
-            # Priority 2: ec-code only (no kegg.reaction annotation at all)
-            # ----------------------------------------------------------------
+
             else:
                 fallback_entries = _try_ec_fallback(
                     rxn, gene, gtype, sources, check_ec_online
@@ -324,16 +259,8 @@ def map_genes_to_ipath_ids(df: pd.DataFrame, gene_rxn_map: dict,
     return results, unmapped_genes
 
 
-# ---------------------------------------------------------------------------
-# Step 5: Determine line width from sources
-# ---------------------------------------------------------------------------
 def _get_width(sources: str) -> str:
-    """
-    ecBridge + ecFSEOF → W30
-    ecBridge only      → W20
-    ecFSEOF only       → W15
-    unknown/other      → W20
-    """
+    """Return W30 for both tools, W15 for ecFSEOF only, otherwise W20."""
     s = str(sources).lower()
     has_bridge = "ecbridge" in s
     has_fseof = "ecfseof" in s
@@ -346,21 +273,14 @@ def _get_width(sources: str) -> str:
     return "W20"
 
 
-# ---------------------------------------------------------------------------
-# Step 6: Generate iPath3 output
-# ---------------------------------------------------------------------------
 def generate_ipath3(results: list, output_path: str):
-    """
-    Write iPath3 selection file.
-    Format: ID COLOR WIDTH
-    OE → #ff0000 (red), KD → #0000ff (blue)
-    Width from sources column.
-    """
+    """Write unique ID COLOR WIDTH selections: OE red, KD blue, conflicts orange.
+
+    Width uses the first source label recorded for each ID."""
     color_map = {"OE": "#ff0000", "KD": "#0000ff"}
 
-    # Deduplicate: same ipath_id may appear from multiple reactions
-    # If same ID has both OE and KD → mark as conflict (orange)
-    id_info = {}  # ipath_id → {types: set, sources: str, genes: list}
+
+    id_info = {}
     for r in results:
         iid = r["ipath_id"]
         if iid not in id_info:
@@ -380,7 +300,7 @@ def generate_ipath3(results: list, output_path: str):
         gene_list = ", ".join(sorted(set(info["genes"])))
 
         if len(types) > 1:
-            # Both OE and KD point to same ID → orange
+
             color = "#ff8800"
             conflict_count += 1
 
@@ -404,9 +324,6 @@ def generate_ipath3(results: list, output_path: str):
     return lines
 
 
-# ---------------------------------------------------------------------------
-# Main
-# ---------------------------------------------------------------------------
 def main():
     parser = argparse.ArgumentParser(
         description="Generate iPath3 input from filtered CSV + COBRA model JSON"
@@ -427,21 +344,21 @@ def main():
         base = args.filtered.replace("_singletest_filtered.csv", "")
         args.output = base + "_ipath3.txt"
 
-    # Step 1
+
     df = read_filtered_csv(args.filtered)
 
-    # Step 2
+
     gene_rxn_map = build_gene_reaction_map(args.model)
 
-    # Step 3 & 4
+
     results, unmapped = map_genes_to_ipath_ids(
         df, gene_rxn_map, check_ec_online=not args.no_api
     )
 
-    # Step 5 & 6
+
     lines = generate_ipath3(results, args.output)
 
-    # Print preview
+
     print(f"\n{'='*60}")
     print("Preview (first 10 lines):")
     print("="*60)
